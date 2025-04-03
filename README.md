@@ -1,11 +1,9 @@
 # SSIS-MySQL
 SSIS with MySQL
 
-# Attribution
-<a href="https://www.flaticon.com/free-icons/school" title="school icons">School icons created by Freepik - Flaticon</a>
-
 # TABLES
 
+```
 CREATE TABLE student (
 	student_id VARCHAR(10) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -39,3 +37,4 @@ CREATE TABLE college (
     PRIMARY KEY	(college_code),
     UNIQUE (college_name) 
 );
+```
