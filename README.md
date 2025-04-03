@@ -6,6 +6,7 @@ SSIS with MySQL
 
 # TABLES
 
+```
 CREATE TABLE student (
 	student_id VARCHAR(10) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -39,3 +40,4 @@ CREATE TABLE college (
     PRIMARY KEY	(college_code),
     UNIQUE (college_name) 
 );
+```
