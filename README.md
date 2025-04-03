@@ -37,4 +37,8 @@ CREATE TABLE college (
     PRIMARY KEY	(college_code),
     UNIQUE (college_name) 
 );
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 36d0df3678fb0c938ead5f366b2d4e276c3e5826
