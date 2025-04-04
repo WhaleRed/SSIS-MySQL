@@ -15,8 +15,10 @@ class studentWindow(QMainWindow):
 
     #Fix Table Ratio
     self.studentTable.setColumnWidth(0,145)        
-    self.studentTable.setColumnWidth(1, 250)        
-    self.studentTable.setColumnWidth(2, 250)        
+    self.studentTable.setColumnWidth(1, 260)        
+    self.studentTable.setColumnWidth(2, 260)
+    self.studentTable.setColumnWidth(3, 100)
+    self.studentTable.setRowCount(10)       
 
   def programView(self):
     widget.setWindowTitle("Program Window")               
@@ -39,7 +41,8 @@ class programWindow(QMainWindow):
     #Fix Table Ratio       
     self.programTable.setColumnWidth(0,145) 
     self.programTable.setColumnWidth(1, 730)
-    self.programTable.setColumnWidth(2,145)         
+    self.programTable.setColumnWidth(2,145)
+    self.programTable.setRowCount(10)          
   
   def studentView(self):
     widget.setWindowTitle("Student Window")               
@@ -62,6 +65,7 @@ class collegeWindow(QMainWindow):
     #Fix Table Ratio       
     self.collegeTable.setColumnWidth(0,145) 
     self.collegeTable.setColumnWidth(1, 875)
+    self.collegeTable.setRowCount(10) 
 
   def studentView(self):
     widget.setWindowTitle("Student Window")               
