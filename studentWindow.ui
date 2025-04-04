@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1065</width>
-    <height>601</height>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,9 +20,15 @@
       <x>20</x>
       <y>80</y>
       <width>1021</width>
-      <height>401</height>
+      <height>411</height>
      </rect>
     </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
     <column>
      <property name="text">
       <string>ID#</string>
@@ -132,6 +138,32 @@
     </property>
     <property name="text">
      <string>Search</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>510</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>|&lt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>510</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&gt;|</string>
     </property>
    </widget>
   </widget>
