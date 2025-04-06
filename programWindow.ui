@@ -173,7 +173,7 @@
      <string>Manage</string>
     </property>
     <addaction name="addProgram"/>
-    <addaction name="deletereProgram"/>
+    <addaction name="deleteProgram"/>
     <addaction name="editProgram"/>
    </widget>
    <widget class="QMenu" name="menuSort">
@@ -204,7 +204,7 @@
     <string>Add Program</string>
    </property>
   </action>
-  <action name="deletereProgram">
+  <action name="deleteProgram">
    <property name="text">
     <string>Delete Program</string>
    </property>
