@@ -14,10 +14,42 @@ class deleteStudentWindow(QMainWindow):
     super(deleteStudentWindow, self).__init__()
     loadUi("deleteStudentWindow.ui", self)
 
-class editStudentWindow(QMainWindow):
+class editStudentWindow1(QMainWindow):
   def __init__(self):
-    super(editStudentWindow, self).__init__()
+    super(editStudentWindow1, self).__init__()
     loadUi("editStudentWindow1.ui", self)
+
+#Manage Windows for Program
+class addProgramWindow(QMainWindow):
+  def __init__(self):
+    super(addProgramWindow,self).__init__()
+    loadUi("addProgramWindow.ui", self)
+
+class deleteProgramWindow(QMainWindow):
+  def __init__(self):
+    super(deleteProgramWindow,self).__init__()
+    loadUi("deleteProgramWindow.ui", self)
+
+class editProgramWindow1(QMainWindow):
+  def __init__(self):
+    super(editProgramWindow1, self).__init__()
+    loadUi("editProgramWindow1.ui", self)
+
+#Manage Windows for College
+class addCollegeWindow(QMainWindow):
+  def __init__(self):
+    super(addCollegeWindow,self).__init__()
+    loadUi("addCollegeWindow.ui", self)
+
+class deleteCollegeWindow(QMainWindow):
+  def __init__(self):
+    super(deleteCollegeWindow, self).__init__()
+    loadUi("deleteCollegeWindow.ui", self)
+
+class editCollegeWindow1(QMainWindow):
+  def __init__(self):
+    super(editCollegeWindow1, self).__init__()
+    loadUi("editCollegeWindow1.ui", self)
 
 
 #The 3 Main windows
@@ -49,7 +81,7 @@ class studentWindow(QMainWindow):
     self.window.show()  
   
   def editWindow1(self):
-    self.window = editStudentWindow()
+    self.window = editStudentWindow1()
     self.window.show()  
 
   def programView(self):
@@ -69,12 +101,27 @@ class programWindow(QMainWindow):
     #Connect Menu
     self.viewStudents.triggered.connect(self.studentView)
     self.viewColleges.triggered.connect(self.collegeView)
+    self.addProgram.triggered.connect(self.addWindow)
+    self.deleteProgram.triggered.connect(self.deleteWindow)
+    self.editProgram.triggered.connect(self.editWindow1)
 
     #Fix Table Ratio       
     self.programTable.setColumnWidth(0,145) 
     self.programTable.setColumnWidth(1, 730)
     self.programTable.setColumnWidth(2,145)
-    self.programTable.setRowCount(10)          
+    self.programTable.setRowCount(10) 
+
+  def addWindow(self):
+    self.window = addProgramWindow()
+    self.window.show()
+
+  def deleteWindow(self):
+    self.window = deleteProgramWindow()
+    self.window.show()
+
+  def editWindow1(self):
+    self.window = editProgramWindow1()
+    self.window.show()         
   
   def studentView(self):
     widget.setWindowTitle("Student Window")               
@@ -93,11 +140,26 @@ class collegeWindow(QMainWindow):
     #Connect Menu
     self.viewStudents.triggered.connect(self.studentView)
     self.viewPrograms.triggered.connect(self.programView)
+    self.addCollege.triggered.connect(self.addWindow)
+    self.deleteCollege.triggered.connect(self.deleteWindow)
+    self.editCollege.triggered.connect(self.editWindow1)
 
     #Fix Table Ratio       
     self.collegeTable.setColumnWidth(0,145) 
     self.collegeTable.setColumnWidth(1, 875)
     self.collegeTable.setRowCount(10) 
+  
+  def addWindow(self):
+    self.window = addCollegeWindow()
+    self.window.show()
+
+  def deleteWindow(self):
+    self.window = deleteCollegeWindow()
+    self.window.show()
+  
+  def editWindow1(self):
+    self.window = editCollegeWindow1()
+    self.window.show()
 
   def studentView(self):
     widget.setWindowTitle("Student Window")               
