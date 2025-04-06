@@ -3,7 +3,24 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
+#Manage Windows for Student
+class addStudentWindow(QMainWindow):
+  def __init__(self):
+    super(addStudentWindow, self).__init__()
+    loadUi("addStudentWindow.ui", self)
 
+class deleteStudentWindow(QMainWindow):
+  def __init__(self):
+    super(deleteStudentWindow, self).__init__()
+    loadUi("deleteStudentWindow.ui", self)
+
+class editStudentWindow(QMainWindow):
+  def __init__(self):
+    super(editStudentWindow, self).__init__()
+    loadUi("editStudentWindow1.ui", self)
+
+
+#The 3 Main windows
 class studentWindow(QMainWindow):
   def __init__(self):
     super(studentWindow, self).__init__()
@@ -12,13 +29,28 @@ class studentWindow(QMainWindow):
     #Conneect Menu
     self.viewPrograms.triggered.connect(self.programView)
     self.viewColleges.triggered.connect(self.collegeView)
+    self.addStudent.triggered.connect(self.addWindow)
+    self.deleteStudent.triggered.connect(self.deleteWindow)
+    self.editStudent.triggered.connect(self.editWindow1)
 
     #Fix Table Ratio
     self.studentTable.setColumnWidth(0,145)        
     self.studentTable.setColumnWidth(1, 260)        
     self.studentTable.setColumnWidth(2, 260)
     self.studentTable.setColumnWidth(3, 100)
-    self.studentTable.setRowCount(10)       
+    self.studentTable.setRowCount(10)
+
+  def addWindow(self):
+    self.window = addStudentWindow()
+    self.window.show()  
+
+  def deleteWindow(self):
+    self.window = deleteStudentWindow()
+    self.window.show()  
+  
+  def editWindow1(self):
+    self.window = editStudentWindow()
+    self.window.show()  
 
   def programView(self):
     widget.setWindowTitle("Program Window")               
@@ -84,6 +116,7 @@ if __name__ == "__main__":
   studentwindow = studentWindow()
   programwindow = programWindow()
   collegewindow = collegeWindow()
+  addstuudentwindow = addStudentWindow()
 
   widget.addWidget(studentwindow)
   widget.addWidget(programwindow)
