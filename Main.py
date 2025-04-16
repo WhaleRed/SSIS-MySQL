@@ -21,11 +21,22 @@ class deleteStudentWindow(QMainWindow):
     self.warning = deleteWarning()
     self.warning.show()
 
-
 class editStudentWindow1(QMainWindow):
   def __init__(self):
     super(editStudentWindow1, self).__init__()
     loadUi("editStudentWindow1.ui", self)
+
+    #Connect
+    self.editingStudent.clicked.connect(self.editWindow2)
+
+  def editWindow2(self):
+    self.window = editStudentWindow2()
+    self.window.show()
+
+class editStudentWindow2(QMainWindow):
+  def __init__(self):
+    super(editStudentWindow2, self).__init__()
+    loadUi("editStudentWindow2.ui", self)
 
 #Manage Windows for Program
 class addProgramWindow(QMainWindow):
@@ -43,6 +54,18 @@ class editProgramWindow1(QMainWindow):
     super(editProgramWindow1, self).__init__()
     loadUi("editProgramWindow1.ui", self)
 
+    #Connect
+    self.editingProgram.clicked.connect(self.editWindow2)
+
+  def editWindow2(self):
+    self.window = editProgramWindow2()
+    self.window.show()
+
+class editProgramWindow2(QMainWindow):
+  def __init__(self):
+    super(editProgramWindow2, self).__init__()
+    loadUi("editProgramWindow2.ui", self)
+
 #Manage Windows for College
 class addCollegeWindow(QMainWindow):
   def __init__(self):
@@ -58,6 +81,18 @@ class editCollegeWindow1(QMainWindow):
   def __init__(self):
     super(editCollegeWindow1, self).__init__()
     loadUi("editCollegeWindow1.ui", self)
+
+    #Connect
+    self.editingCollege.clicked.connect(self.editWindow2)
+  
+  def editWindow2(self):
+    self.window = editCollegeWindow2()
+    self.window.show()
+
+class editCollegeWindow2(QMainWindow):
+  def __init__(self):
+    super(editCollegeWindow2, self).__init__()
+    loadUi("editCollegeWindow2.ui", self)
 
 #Warnings
 class deleteWarning(QDialog):
