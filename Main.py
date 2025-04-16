@@ -49,6 +49,13 @@ class deleteProgramWindow(QMainWindow):
     super(deleteProgramWindow,self).__init__()
     loadUi("deleteProgramWindow.ui", self)
 
+    #Connect
+    self.deleteProgramSubmit.clicked.connect(self.warning)
+
+  def warning(self):
+    self.warning = deleteWarning()
+    self.warning.show()
+
 class editProgramWindow1(QMainWindow):
   def __init__(self):
     super(editProgramWindow1, self).__init__()
@@ -77,6 +84,13 @@ class deleteCollegeWindow(QMainWindow):
     super(deleteCollegeWindow, self).__init__()
     loadUi("deleteCollegeWindow.ui", self)
 
+    #Conncect
+    self.deleteCollegeSubmit.clicked.connect(self.warning)
+
+  def warning(self):
+    self.warning = deleteWarning()
+    self.warning.show()
+    
 class editCollegeWindow1(QMainWindow):
   def __init__(self):
     super(editCollegeWindow1, self).__init__()
