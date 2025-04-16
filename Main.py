@@ -1,7 +1,7 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 
 #Manage Windows for Student
 class addStudentWindow(QMainWindow):
@@ -13,6 +13,14 @@ class deleteStudentWindow(QMainWindow):
   def __init__(self):
     super(deleteStudentWindow, self).__init__()
     loadUi("deleteStudentWindow.ui", self)
+
+    #Connect Button
+    self.deleteStudentSubmit.clicked.connect(self.warning)
+
+  def warning(self):
+    self.warning = deleteWarning()
+    self.warning.show()
+
 
 class editStudentWindow1(QMainWindow):
   def __init__(self):
@@ -51,6 +59,16 @@ class editCollegeWindow1(QMainWindow):
     super(editCollegeWindow1, self).__init__()
     loadUi("editCollegeWindow1.ui", self)
 
+#Warnings
+class deleteWarning(QDialog):
+  def __init__(self):
+    super(deleteWarning, self).__init__()
+    loadUi("deleteWarning.ui", self)
+
+class editWarning(QDialog):
+  def __init__(self):
+    super(editWarning, self).__init__()
+    loadUi("editWarning.ui", self)
 
 #The 3 Main windows
 class studentWindow(QMainWindow):
