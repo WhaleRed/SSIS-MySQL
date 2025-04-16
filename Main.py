@@ -1,7 +1,9 @@
 import sys
+import add
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
+
 
 #Manage Windows for Student
 class addStudentWindow(QMainWindow):
@@ -9,6 +11,21 @@ class addStudentWindow(QMainWindow):
     super(addStudentWindow, self).__init__()
     loadUi("addStudentWindow.ui", self)
 
+    #Connect
+    self.addStudentSubmit.clicked.connect(self.submit)
+  
+  def submit(self):
+    student = []
+    student.append(self.idAdd.text())
+    student.append(self.fnameAdd.text())
+    student.append(self.lnameAdd.text())
+    student.append(self.ylvlAdd.currentText())
+    student.append(self.genderAdd.currentText())
+    student.append(self.programAdd.text())
+    
+    add.addStudent(student)
+    self.close()
+    
 class deleteStudentWindow(QMainWindow):
   def __init__(self):
     super(deleteStudentWindow, self).__init__()
@@ -50,6 +67,18 @@ class addProgramWindow(QMainWindow):
   def __init__(self):
     super(addProgramWindow,self).__init__()
     loadUi("addProgramWindow.ui", self)
+
+    #Connect
+    self.addProgramSubmit.clicked.connect(self.submit)
+  
+  def submit(self):
+    program = []
+    program.append(self.programCodeAdd.text())
+    program.append(self.programNameAdd.text())
+    program.append(self.collegeCodeAdd.text())
+
+    add.addProgram(program)
+    self.close()
 
 class deleteProgramWindow(QMainWindow):
   def __init__(self):
@@ -93,6 +122,17 @@ class addCollegeWindow(QMainWindow):
     super(addCollegeWindow,self).__init__()
     loadUi("addCollegeWindow.ui", self)
 
+    #Connect
+    self.addCollegeSubmit.clicked.connect(self.submit)
+
+  def submit(self):
+    college = []
+    college.append(self.collegeCodeAdd.text())
+    college.append(self.collegeNameAdd.text())
+
+    add.addCollege(college)
+    self.close()
+
 class deleteCollegeWindow(QMainWindow):
   def __init__(self):
     super(deleteCollegeWindow, self).__init__()
@@ -128,7 +168,7 @@ class editCollegeWindow2(QMainWindow):
   def warning(self):
     self.warning = editWarning()
     self.warning.show()
-    
+
 #Warnings
 class deleteWarning(QDialog):
   def __init__(self):
