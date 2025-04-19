@@ -32,7 +32,7 @@
      <string>Delete Program</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="programtDelete">
+   <widget class="QLineEdit" name="programDelete">
     <property name="geometry">
      <rect>
       <x>170</x>
