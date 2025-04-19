@@ -53,14 +53,24 @@ class deleteStudentWindow(QMainWindow):
     self.warning = deleteWarning()
     self.warning.show()
     
-
 class editStudentWindow1(QMainWindow):
   def __init__(self):
     super(editStudentWindow1, self).__init__()
     loadUi("editStudentWindow1.ui", self)
 
     #Connect
-    self.editingStudent.clicked.connect(self.editWindow2)
+    self.editingStudent.clicked.connect(self.check)
+    self.editingStudent.clicked.connect(self.close)
+
+  def check(self):
+    if exists.studentExists(self.studentEdit.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      self.editWindow2()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
 
   def editWindow2(self):
     self.window = editStudentWindow2()
@@ -73,7 +83,7 @@ class editStudentWindow2(QMainWindow):
 
     #Connect
     self.submitStudent.clicked.connect(self.warning)
-  
+
   def warning(self):
     self.warning = editWarning()
     self.warning.show()
@@ -127,7 +137,18 @@ class editProgramWindow1(QMainWindow):
     loadUi("editProgramWindow1.ui", self)
 
     #Connect
-    self.editingProgram.clicked.connect(self.editWindow2)
+    self.editingProgram.clicked.connect(self.check)
+    self.editingProgram.clicked.connect(self.close)
+
+  def check(self):
+    if exists.programExists(self.programEdit.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      self.editWindow2()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
 
   def editWindow2(self):
     self.window = editProgramWindow2()
@@ -193,8 +214,19 @@ class editCollegeWindow1(QMainWindow):
     loadUi("editCollegeWindow1.ui", self)
 
     #Connect
-    self.editingCollege.clicked.connect(self.editWindow2)
-  
+    self.editingCollege.clicked.connect(self.check)
+    self.editingCollege.clicked.connect(self.close)
+
+  def check(self):
+    if exists.collegeExists(self.collegeEdit.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      self.editWindow2()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
+
   def editWindow2(self):
     self.window = editCollegeWindow2()
     self.window.show()
@@ -206,7 +238,7 @@ class editCollegeWindow2(QMainWindow):
 
     #Connect
     self.submitCollege.clicked.connect(self.warning)
-  
+
   def warning(self):
     self.warning = editWarning()
     self.warning.show()
