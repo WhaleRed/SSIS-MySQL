@@ -17,16 +17,23 @@ class addStudentWindow(QMainWindow):
     self.addStudentSubmit.clicked.connect(self.submit)
   
   def submit(self):
-    student = []
-    student.append(self.idAdd.text())
-    student.append(self.fnameAdd.text())
-    student.append(self.lnameAdd.text())
-    student.append(self.ylvlAdd.currentText())
-    student.append(self.genderAdd.currentText())
-    student.append(self.programAdd.text())
-    
-    add.addStudent(student)
-    self.close()
+    if exists.studentExists(self.idAdd.text()) == True:
+      self.alreadyExist()
+    else:
+      student = []
+      student.append(self.idAdd.text())
+      student.append(self.fnameAdd.text())
+      student.append(self.lnameAdd.text())
+      student.append(self.ylvlAdd.currentText())
+      student.append(self.genderAdd.currentText())
+      student.append(self.programAdd.text())
+      
+      add.addStudent(student)
+      self.close()
+  
+  def alreadyExist(self):
+    self.warning = aeWarning()
+    self.warning.show()
 
 class deleteStudentWindow(QMainWindow):
   def __init__(self):
@@ -98,13 +105,20 @@ class addProgramWindow(QMainWindow):
     self.addProgramSubmit.clicked.connect(self.submit)
   
   def submit(self):
-    program = []
-    program.append(self.programCodeAdd.text())
-    program.append(self.programNameAdd.text())
-    program.append(self.collegeCodeAdd.text())
+    if exists.programExists(self.programCodeAdd.text()) == True:
+      self.alreadyExist()
+    else:
+      program = []
+      program.append(self.programCodeAdd.text())
+      program.append(self.programNameAdd.text())
+      program.append(self.collegeCodeAdd.text())
 
-    add.addProgram(program)
-    self.close()
+      add.addProgram(program)
+      self.close()
+  
+  def alreadyExist(self):
+    self.warning = aeWarning()
+    self.warning.show()
 
 class deleteProgramWindow(QMainWindow):
   def __init__(self):
@@ -176,12 +190,19 @@ class addCollegeWindow(QMainWindow):
     self.addCollegeSubmit.clicked.connect(self.submit)
 
   def submit(self):
-    college = []
-    college.append(self.collegeCodeAdd.text())
-    college.append(self.collegeNameAdd.text())
+    if exists.collegeExists(self.collegeCodeAdd.text()) == True:
+      self.alreadyExist()
+    else:
+      college = []
+      college.append(self.collegeCodeAdd.text())
+      college.append(self.collegeNameAdd.text())
 
-    add.addCollege(college)
-    self.close()
+      add.addCollege(college)
+      self.close()
+
+  def alreadyExist(self):
+    self.warning = aeWarning()
+    self.warning.show()
 
 class deleteCollegeWindow(QMainWindow):
   def __init__(self):
