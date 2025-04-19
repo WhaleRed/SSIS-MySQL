@@ -180,6 +180,17 @@ class editWarning(QDialog):
     super(editWarning, self).__init__()
     loadUi("editWarning.ui", self)
 
+class dneWarning(QDialog):
+  def __init__(self):
+    super(dneWarning, self).__init__()
+    loadUi("dneWarning.ui", self)
+
+class aeWarning(QDialog):
+  def __init__(self):
+    super(aeWarning, self).__init__()
+    loadUi("aeWarning.ui", self)
+
+
 #The 3 Main windows
 class studentWindow(QMainWindow):
   def __init__(self):
