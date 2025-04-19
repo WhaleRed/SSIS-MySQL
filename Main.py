@@ -1,9 +1,11 @@
 import sys
 import add
+import delete
+import exists
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
-
+  
 
 #Manage Windows for Student
 class addStudentWindow(QMainWindow):
@@ -25,18 +27,32 @@ class addStudentWindow(QMainWindow):
     
     add.addStudent(student)
     self.close()
-    
+
 class deleteStudentWindow(QMainWindow):
   def __init__(self):
     super(deleteStudentWindow, self).__init__()
     loadUi("deleteStudentWindow.ui", self)
 
     #Connect Button
-    self.deleteStudentSubmit.clicked.connect(self.warning)
+    self.deleteStudentSubmit.clicked.connect(self.deleteStudent)
+    self.deleteStudentSubmit.clicked.connect(self.close)
+
+  def deleteStudent(self):
+    if exists.studentExists(self.studentDelete.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      global item 
+      item = self.studentDelete.text()
+      self.warning()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
 
   def warning(self):
     self.warning = deleteWarning()
     self.warning.show()
+    
 
 class editStudentWindow1(QMainWindow):
   def __init__(self):
@@ -86,7 +102,20 @@ class deleteProgramWindow(QMainWindow):
     loadUi("deleteProgramWindow.ui", self)
 
     #Connect
-    self.deleteProgramSubmit.clicked.connect(self.warning)
+    self.deleteProgramSubmit.clicked.connect(self.deleteProgram)
+    self.deleteProgramSubmit.clicked.connect(self.close)
+  
+  def deleteProgram(self):
+    if exists.programExists(self.programDelete.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      global item 
+      item = self.programDelete.text()
+      self.warning()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
 
   def warning(self):
     self.warning = deleteWarning()
@@ -139,7 +168,20 @@ class deleteCollegeWindow(QMainWindow):
     loadUi("deleteCollegeWindow.ui", self)
 
     #Conncect
-    self.deleteCollegeSubmit.clicked.connect(self.warning)
+    self.deleteCollegeSubmit.clicked.connect(self.deleteCollege)
+    self.deleteCollegeSubmit.clicked.connect(self.close)
+
+  def deleteCollege(self):
+    if exists.collegeExists(self.collegeDelete.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      global item 
+      item = self.collegeDelete.text()
+      self.warning()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
 
   def warning(self):
     self.warning = deleteWarning()
@@ -175,6 +217,11 @@ class deleteWarning(QDialog):
     super(deleteWarning, self).__init__()
     loadUi("deleteWarning.ui", self)
 
+    #Connect
+    self.yes.clicked.connect(confirmDelete)
+    self.yes.clicked.connect(self.close)
+    self.cancel.clicked.connect(self.close)
+
 class editWarning(QDialog):
   def __init__(self):
     super(editWarning, self).__init__()
@@ -189,7 +236,6 @@ class aeWarning(QDialog):
   def __init__(self):
     super(aeWarning, self).__init__()
     loadUi("aeWarning.ui", self)
-
 
 #The 3 Main windows
 class studentWindow(QMainWindow):
@@ -308,6 +354,16 @@ class collegeWindow(QMainWindow):
     widget.setWindowTitle("Program Window") 
     widget.setCurrentIndex(widget.currentIndex()-1)
 
+#Global functions
+def confirmDelete():
+  arr = []
+  arr.append(item)
+  if widget.currentIndex() == 0:
+    delete.deleteStudent(arr)
+  elif widget.currentIndex() == 1:
+    delete.deleteProgram(arr)
+  elif widget.currentIndex() == 2:
+    delete.deleteCollege(arr)
 
 if __name__ == "__main__":
   app = QApplication(sys.argv)
