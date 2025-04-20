@@ -13,31 +13,61 @@ db = mysql.connector.connect(
 mycursor = db.cursor()
 
 def studentExists(student_id):
-  mycursor.execute("SELECT student_id FROM student")
-  ids = []
+  studentId = []
+  studentId.append(student_id)
+  check = []
+  mycursor.execute("SELECT student_id FROM student WHERE student_id = %s", studentId)
   for row in mycursor:
-    ids.append(row[0])
-  if student_id in ids:
-    return True
-  else:
+    check.append(row)
+  if not check:
     return False
+  else:
+    return True
   
 def programExists(prog_code):
-  mycursor.execute("SELECT program_code FROM program")
-  codes = []
+  progCode = []
+  progCode.append(prog_code)
+  check = []
+  mycursor.execute("SELECT program_code FROM program WHERE program_code = %s", progCode)
   for row in mycursor:
-    codes.append(row[0])
-  if prog_code in codes:
-    return True
-  else:
+    check.append(row)
+  if not check:
     return False
+  else:
+    return True
+
+def programNameExists(prog_name):
+  progName = []
+  progName.append(prog_name)
+  check = []
+  mycursor.execute("SELECT program_code FROM program WHERE program_name = %s", progName)
+  for row in mycursor:
+    check.append(row)
+  if not check:
+    return False
+  else:
+    return True
 
 def collegeExists(col_code):
-  mycursor.execute("SELECT college_code FROM college")
-  codes = []
+  colCode = []
+  colCode.append(col_code)
+  check = []
+  mycursor.execute("SELECT college_code FROM college WHERE college_code = %s", colCode)
   for row in mycursor:
-    codes.append(row[0])
-  if col_code in codes:
-    return True
-  else:
+    check.append(row)
+  if not check:
     return False
+  else:
+    return True
+  
+def collegeNameExists(college_name):
+  colName = []
+  colName.append(college_name)
+  check = []
+  mycursor.execute("SELECT college_name FROM college WHERE college_name = %s", colName)
+  for row in mycursor:
+    check.append(row)
+  if not check:
+    return False
+  else:
+    return True
