@@ -2,6 +2,8 @@ import sys
 import add
 import delete
 import exists
+import retrieveData
+import edit
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
@@ -73,6 +75,10 @@ class editStudentWindow1(QMainWindow):
     if exists.studentExists(self.studentEdit.text()) == False:
       self.doesNotExistWarning()
     else:
+      arr = []
+      arr.append(self.studentEdit.text())
+      global studentData
+      studentData = retrieveData.retrieveStudent(arr)
       self.editWindow2()
 
   def doesNotExistWarning(self):
@@ -89,10 +95,39 @@ class editStudentWindow2(QMainWindow):
     loadUi("editStudentWindow2.ui", self) 
 
     #Connect
-    self.submitStudent.clicked.connect(self.warning)
+    self.submitStudent.clicked.connect(self.editStudent)
+    self.submitStudent.clicked.connect(self.close)
+
+    #Setting current data values
+    self.idNew.setText(studentData[0])
+    self.fnameNew.setText(studentData[1])
+    self.lnameNew.setText(studentData[2])
+    self.ylvlNew.setCurrentText(str(studentData[3]))
+    self.genderNew.setCurrentText(studentData[4])
+    self.programNew.setText(studentData[5])
+  
+  def editStudent(self):
+    if exists.studentExists(self.idNew.text()) == True and self.idNew.text() != studentData[0]:
+      self.alreadyExist()
+    else:
+      global item
+      item = []
+      item.append(self.idNew.text())
+      item.append(self.fnameNew.text())
+      item.append(self.lnameNew.text())
+      item.append(self.ylvlNew.currentText())
+      item.append(self.genderNew.currentText())
+      item.append(self.programNew.text())
+      item.append(studentData[0])
+
+      self.warning()
 
   def warning(self):
     self.warning = editWarning()
+    self.warning.show()
+
+  def alreadyExist(self):
+    self.warning = aeWarning()
     self.warning.show()
 
 #Manage Windows for Program
@@ -158,6 +193,10 @@ class editProgramWindow1(QMainWindow):
     if exists.programExists(self.programEdit.text()) == False:
       self.doesNotExistWarning()
     else:
+      arr = []
+      arr.append(self.programEdit.text())
+      global programData
+      programData = retrieveData.retrieveProgram(arr)
       self.editWindow2()
 
   def doesNotExistWarning(self):
@@ -174,10 +213,32 @@ class editProgramWindow2(QMainWindow):
     loadUi("editProgramWindow2.ui", self)
 
     #Connect
-    self.submitProgram.clicked.connect(self.warning)
+    self.submitProgram.clicked.connect(self.editProgram)
+    self.submitProgram.clicked.connect(self.close)
+
+    #Set current Data values
+    self.programCodeNew.setText(programData[0])
+    self.programNameNew.setText(programData[1])
+    self.collegeCodeNew.setText(programData[2])
   
+  def editProgram(self):
+    if exists.programExists(self.programCodeNew.text()) == True and self.programCodeNew.text() != programData[0]:
+      self.alreadyExist()
+    else:
+      global item
+      item = []
+      item.append(self.programCodeNew.text())
+      item.append(self.programNameNew.text())
+      item.append(self.collegeCodeNew.text())
+      item.append(programData[0])
+      self.warning()
+
   def warning(self):
     self.warning = editWarning()
+    self.warning.show()
+
+  def alreadyExist(self):
+    self.warning = aeWarning()
     self.warning.show()
 
 #Manage Windows for College
@@ -241,7 +302,11 @@ class editCollegeWindow1(QMainWindow):
   def check(self):
     if exists.collegeExists(self.collegeEdit.text()) == False:
       self.doesNotExistWarning()
-    else:
+    else: 
+      arr = []
+      arr.append(self.collegeEdit.text())
+      global collegeData
+      collegeData = retrieveData.retrieveCollege(arr)
       self.editWindow2()
 
   def doesNotExistWarning(self):
@@ -258,10 +323,31 @@ class editCollegeWindow2(QMainWindow):
     loadUi("editCollegeWindow2.ui", self)
 
     #Connect
-    self.submitCollege.clicked.connect(self.warning)
+    self.submitCollege.clicked.connect(self.editCollege)
+    self.submitCollege.clicked.connect(self.close)
+
+    #Set current data Values
+    self.collegeCodeNew.setText(collegeData[0])
+    self.collegeNameNew.setText(collegeData[1])
+
+  def editCollege(self):
+    if exists.collegeExists(self.collegeCodeNew.text()) == True and self.collegeCodeNew.text() != collegeData[0]:
+      self.alreadyExist()
+    else:
+      global item
+      item = []
+      item.append(self.collegeCodeNew.text())
+      item.append(self.collegeNameNew.text())
+      item.append(collegeData[0])
+      
+      self.warning()
 
   def warning(self):
     self.warning = editWarning()
+    self.warning.show()
+
+  def alreadyExist(self):
+    self.warning = aeWarning()
     self.warning.show()
 
 #Warnings
@@ -279,6 +365,11 @@ class editWarning(QDialog):
   def __init__(self):
     super(editWarning, self).__init__()
     loadUi("editWarning.ui", self)
+
+    #Connect
+    self.yes.clicked.connect(confirmEdit)
+    self.yes.clicked.connect(self.close)
+    self.cancel.clicked.connect(self.close)   
 
 class dneWarning(QDialog):
   def __init__(self):
@@ -418,6 +509,16 @@ def confirmDelete():
   elif widget.currentIndex() == 2:
     delete.deleteCollege(arr)
 
+def confirmEdit():
+  if widget.currentIndex() == 0:
+    edit.editStudent(item)
+  elif widget.currentIndex() == 1:
+    edit.editProgram(item)
+  elif widget.currentIndex() == 2:
+    edit.editCollege(item)
+
+
+#####
 if __name__ == "__main__":
   app = QApplication(sys.argv)
 
