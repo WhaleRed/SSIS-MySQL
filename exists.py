@@ -3,16 +3,18 @@
 
 import mysql.connector
 
-db = mysql.connector.connect(
+
+
+def studentExists(student_id):
+  db = mysql.connector.connect(
   host="localhost",
   user = "root",
   password="jupiter'sfear",
   database="ssis"
   )
 
-mycursor = db.cursor()
+  mycursor = db.cursor()
 
-def studentExists(student_id):
   studentId = []
   studentId.append(student_id)
   check = []
@@ -25,6 +27,15 @@ def studentExists(student_id):
     return True
   
 def programExists(prog_code):
+  db = mysql.connector.connect(
+  host="localhost",
+  user = "root",
+  password="jupiter'sfear",
+  database="ssis"
+  )
+
+  mycursor = db.cursor()
+
   progCode = []
   progCode.append(prog_code)
   check = []
@@ -37,6 +48,15 @@ def programExists(prog_code):
     return True
 
 def programNameExists(prog_name):
+  db = mysql.connector.connect(
+  host="localhost",
+  user = "root",
+  password="jupiter'sfear",
+  database="ssis"
+  )
+
+  mycursor = db.cursor()
+
   progName = []
   progName.append(prog_name)
   check = []
@@ -49,6 +69,15 @@ def programNameExists(prog_name):
     return True
 
 def collegeExists(col_code):
+  db = mysql.connector.connect(
+  host="localhost",
+  user = "root",
+  password="jupiter'sfear",
+  database="ssis"
+  )
+
+  mycursor = db.cursor()
+
   colCode = []
   colCode.append(col_code)
   check = []
@@ -61,6 +90,15 @@ def collegeExists(col_code):
     return True
   
 def collegeNameExists(college_name):
+  db = mysql.connector.connect(
+  host="localhost",
+  user = "root",
+  password="jupiter'sfear",
+  database="ssis"
+  )
+
+  mycursor = db.cursor()
+
   colName = []
   colName.append(college_name)
   check = []
