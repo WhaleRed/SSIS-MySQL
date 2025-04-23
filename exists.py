@@ -22,8 +22,10 @@ def studentExists(student_id):
   for row in mycursor:
     check.append(row)
   if not check:
+    db.close()
     return False
   else:
+    db.close()
     return True
   
 def programExists(prog_code):
@@ -43,8 +45,10 @@ def programExists(prog_code):
   for row in mycursor:
     check.append(row)
   if not check:
+    db.close()
     return False
   else:
+    db.close()
     return True
 
 def programNameExists(prog_name):
@@ -64,8 +68,10 @@ def programNameExists(prog_name):
   for row in mycursor:
     check.append(row)
   if not check:
+    db.close()
     return False
   else:
+    db.close()
     return True
 
 def collegeExists(col_code):
@@ -85,8 +91,10 @@ def collegeExists(col_code):
   for row in mycursor:
     check.append(row)
   if not check:
+    db.close()
     return False
   else:
+    db.close()
     return True
   
 def collegeNameExists(college_name):
@@ -106,6 +114,8 @@ def collegeNameExists(college_name):
   for row in mycursor:
     check.append(row)
   if not check:
+    db.close()
     return False
   else:
+    db.close()
     return True
