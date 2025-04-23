@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1068</width>
-    <height>628</height>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -104,7 +104,13 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="searchButton">
@@ -151,6 +157,19 @@
      <string>&gt;|</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="jump">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>550</y>
+      <width>93</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Jump</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -175,14 +194,15 @@
     <addaction name="addProgram"/>
     <addaction name="deleteProgram"/>
     <addaction name="editProgram"/>
+    <addaction name="refreshTable"/>
    </widget>
    <widget class="QMenu" name="menuSort">
     <property name="title">
      <string>Sort</string>
     </property>
-    <addaction name="actionCode"/>
-    <addaction name="actionName"/>
-    <addaction name="actionCollege"/>
+    <addaction name="sortCode"/>
+    <addaction name="sortName"/>
+    <addaction name="sortCollege"/>
    </widget>
    <addaction name="menuView"/>
    <addaction name="menuManage"/>
@@ -214,19 +234,24 @@
     <string>Edit Program</string>
    </property>
   </action>
-  <action name="actionCode">
+  <action name="sortCode">
    <property name="text">
     <string>Code</string>
    </property>
   </action>
-  <action name="actionName">
+  <action name="sortName">
    <property name="text">
     <string>Name</string>
    </property>
   </action>
-  <action name="actionCollege">
+  <action name="sortCollege">
    <property name="text">
     <string>College</string>
+   </property>
+  </action>
+  <action name="refreshTable">
+   <property name="text">
+    <string>Refresh Table</string>
    </property>
   </action>
  </widget>
