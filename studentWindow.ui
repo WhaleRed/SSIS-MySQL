@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1065</width>
-    <height>629</height>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -101,7 +101,13 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="searchBar">
@@ -166,6 +172,19 @@
      <string>&gt;|</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="jump">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>550</y>
+      <width>93</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Jump</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -191,6 +210,7 @@
     <addaction name="addStudent"/>
     <addaction name="deleteStudent"/>
     <addaction name="editStudent"/>
+    <addaction name="refreshTable"/>
    </widget>
    <widget class="QMenu" name="menuSort">
     <property name="title">
@@ -261,6 +281,11 @@
   <action name="sortProgram">
    <property name="text">
     <string>Program</string>
+   </property>
+  </action>
+  <action name="refreshTable">
+   <property name="text">
+    <string>Refresh Table</string>
    </property>
   </action>
  </widget>
