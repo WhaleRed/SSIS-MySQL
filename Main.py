@@ -3,7 +3,7 @@ import add
 import delete
 import exists
 import retrieveData
-import edit
+import edit, math
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
@@ -139,6 +139,7 @@ class addProgramWindow(QMainWindow):
 
     #Connect
     self.addProgramSubmit.clicked.connect(self.submit)
+    self.addProgramSubmit.clicked.connect(self.close)
   
   def submit(self):
     if exists.programExists(self.programCodeAdd.text()) == True:
@@ -250,9 +251,10 @@ class addCollegeWindow(QMainWindow):
 
     #Connect
     self.addCollegeSubmit.clicked.connect(self.submit)
+    self.addCollegeSubmit.clicked.connect(self.close)
 
   def submit(self):
-    if exists.collegeExists(self.collegeCodeAdd.text()) == True:
+    if exists.collegeExists(self.collegeCodeAdd.text()) == True or exists.collegeNameExists(self.collegeNameAdd.text()) == True:
       self.alreadyExist()
     else:
       college = []
@@ -403,6 +405,11 @@ class studentWindow(QMainWindow):
 
     #Connect Buttons
     self.searchButton.clicked.connect(self.search)
+    self.nextButton.clicked.connect(self.nextPage)
+    self.prevButton.clicked.connect(self.prevPage)
+    self.fPage.clicked.connect(self.firstPage)
+    self.lPage.clicked.connect(self.lastPage)
+    self.jump.clicked.connect(self.jumpPage)
 
     #Fix Table Ratio
     self.studentTable.setColumnWidth(0,145)        
@@ -553,6 +560,30 @@ class studentWindow(QMainWindow):
       self.studentTable.clearContents()
       self.populateTable(self.studentSortState)
 
+  def nextPage(self):
+    page = int(self.pageNum.text()) + 1
+    self.pageNum.setText(str(page))
+    self.populateTable(self.studentSortState)
+  
+  def prevPage(self):
+    if int(self.pageNum.text()) > 1:
+      page = int(self.pageNum.text()) - 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.studentSortState)
+
+  def firstPage(self):
+    if int(self.pageNum.text()) > 1:
+      self.pageNum.setText(str(1))
+      self.populateTable(self.studentSortState)
+
+  def lastPage(self):
+    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
+    self.populateTable(self.studentSortState)
+  
+  def jumpPage(self):
+    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
+      self.populateTable(self.studentSortState)
+
 
 
 class programWindow(QMainWindow):
@@ -573,6 +604,11 @@ class programWindow(QMainWindow):
 
     #Connect Buttons
     self.searchButton.clicked.connect(self.search)
+    self.nextButton.clicked.connect(self.nextPage)
+    self.prevButton.clicked.connect(self.prevPage)
+    self.fPage.clicked.connect(self.firstPage)
+    self.lPage.clicked.connect(self.lastPage)
+    self.jump.clicked.connect(self.jumpPage)
 
     #Fix Table Ratio       
     self.programTable.setColumnWidth(0,145) 
@@ -662,6 +698,30 @@ class programWindow(QMainWindow):
       self.programTable.clearContents()
       self.populateTable(self.programSortState)
 
+  def nextPage(self):
+    page = int(self.pageNum.text()) + 1
+    self.pageNum.setText(str(page))
+    self.populateTable(self.programSortState)
+  
+  def prevPage(self):
+    if int(self.pageNum.text()) > 1:
+      page = int(self.pageNum.text()) - 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.programSortState)
+
+  def firstPage(self):
+    if int(self.pageNum.text()) > 1:
+      self.pageNum.setText(str(1))
+      self.populateTable(self.programSortState)
+
+  def lastPage(self):
+    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
+    self.populateTable(self.programSortState)
+  
+  def jumpPage(self):
+    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfProgram()/25):
+      self.populateTable(self.programSortState)
+
 
 class collegeWindow(QMainWindow):
   def __init__(self):
@@ -680,6 +740,11 @@ class collegeWindow(QMainWindow):
 
     #Connect Buttons
     self.searchButton.clicked.connect(self.search)
+    self.nextButton.clicked.connect(self.nextPage)
+    self.prevButton.clicked.connect(self.prevPage)
+    self.fPage.clicked.connect(self.firstPage)
+    self.lPage.clicked.connect(self.lastPage)
+    self.jump.clicked.connect(self.jumpPage)
 
     #Fix Table Ratio       
     self.collegeTable.setColumnWidth(0,145) 
@@ -725,6 +790,7 @@ class collegeWindow(QMainWindow):
   def populateTable(self,sortState):
     match sortState:
       case 0:
+        self.collegeTable.clearContents()
         colleges = retrieveData.retrieveCollegeCodeSort(int(self.pageNum.text()), 10)
         row = 0
         for college in colleges:
@@ -733,6 +799,7 @@ class collegeWindow(QMainWindow):
           row = row + 1
 
       case 1:
+        self.collegeTable.clearContents()
         colleges = retrieveData.retrieveCollegeNameSort(int(self.pageNum.text()), 10)
         row = 0
         for college in colleges:
@@ -753,6 +820,29 @@ class collegeWindow(QMainWindow):
       self.collegeTable.clearContents()
       self.populateTable(self.collegeSortState)
 
+  def nextPage(self):
+    page = int(self.pageNum.text()) + 1
+    self.pageNum.setText(str(page))
+    self.populateTable(self.collegeSortState)
+  
+  def prevPage(self):
+    if int(self.pageNum.text()) > 1:
+      page = int(self.pageNum.text()) - 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.collegeSortState)
+
+  def firstPage(self):
+    if int(self.pageNum.text()) > 1:
+      self.pageNum.setText(str(1))
+      self.populateTable(self.collegeSortState)
+
+  def lastPage(self):
+    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
+    self.populateTable(self.collegeSortState)
+  
+  def jumpPage(self):
+    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfCollege()/10):
+      self.populateTable(self.collegeSortState)
 
 #Global functions
 def confirmDelete():
@@ -788,7 +878,7 @@ if __name__ == "__main__":
   widget.addWidget(studentwindow)
   widget.addWidget(programwindow)
   widget.addWidget(collegewindow)
-  widget.setFixedHeight(597)               
+  widget.setFixedHeight(640)               
   widget.setFixedWidth(1065)
   widget.setWindowTitle("Student Window")               
   widget.show()
