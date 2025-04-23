@@ -9,6 +9,7 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor()
 
+#For edit
 def retrieveStudent(studid):
   arr = []
   mycursor.execute("SELECT * FROM student WHERE student_id = %s", studid)
@@ -36,4 +37,162 @@ def retrieveCollege(col_code):
   for row in mycursor:
     arr.append(row[0])
     arr.append(row[1])
+  return arr
+
+#For Table Population of Student
+
+def retrieveNumberOfStudents():
+  mycursor.execute("SELECT COUNT(student_id) FROM student")
+  return mycursor.fetchone()[0]
+
+def retrieveStudentsIdSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY student_id ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveStudentsFnameSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY first_name ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveStudentsLnameSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY last_name ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveStudentsYearSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY year_level ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveStudentsGenderSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY gender ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveStudentsProgramSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM student ORDER BY program_code ASC LIMIT 50 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+#For table population of Program
+def retrieveNumberOfProgram():
+  mycursor.execute("SELECT COUNT(program_code) FROM program")
+  return mycursor.fetchone()[0]
+
+def retrieveProgramCodeSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM program ORDER BY program_code ASC LIMIT 25 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveProgramNameSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM program ORDER BY program_name ASC LIMIT 25 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveProgramCollegeSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM program ORDER BY college_code ASC LIMIT 25 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+#For table population of College
+def retrieveNumberOfCollege():
+  mycursor.execute("SELECT COUNT(college_code) FROM college")
+  return mycursor.fetchone()[0]
+
+def retrieveCollegeCodeSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM college ORDER BY college_code ASC LIMIT 10 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveCollegeNameSort(page, rows):
+  offset = []
+  off = (page-1) * rows
+  offset.append(off)
+  arr = []
+  mycursor.execute("SELECT * FROM college ORDER BY college_name ASC LIMIT 10 OFFSET %s", offset)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+#For search
+
+def retrieveSearchStudent(searched):
+  search = []
+  for i in range(6):
+    search.append(searched)
+  arr = []
+  mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s", search)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveSearchProgram(searched):
+  search = []
+  for i in range(3):
+    search.append(searched)
+  arr = []
+  mycursor.execute("SELECT * FROM program WHERE program_code LIKE %s OR program_name LIKE %s OR college_code LIKE %s", search)
+  for row in mycursor:
+    arr.append(row)
+  return arr
+
+def retrieveSearchCollege(searched):
+  search = []
+  for i in range(2):
+    search.append(searched)
+  arr = []
+  mycursor.execute("SELECT * FROM college WHERE college_code LIKE %s OR college_name LIKE %s", search)
+  for row in mycursor:
+    arr.append(row)
   return arr
