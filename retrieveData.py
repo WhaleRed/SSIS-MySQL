@@ -1,16 +1,16 @@
 import mysql.connector
 
-db = mysql.connector.connect(
-  host="localhost",
-  user = "root",
-  password="jupiter'sfear",
-  database="ssis"
-  )
-
-mycursor = db.cursor()
-
 #For edit
 def retrieveStudent(studid):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   arr = []
   mycursor.execute("SELECT * FROM student WHERE student_id = %s", studid)
   for row in mycursor:
@@ -20,32 +20,73 @@ def retrieveStudent(studid):
     arr.append(row[3])
     arr.append(row[4])
     arr.append(row[5])
+  db.close()
   return arr
 
 def retrieveProgram(prog_code):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   arr = []
   mycursor.execute("SELECT * FROM program WHERE program_code = %s", prog_code)
   for row in mycursor:
     arr.append(row[0])
     arr.append(row[1])
     arr.append(row[2])
+  db.close()
   return arr
 
 def retrieveCollege(col_code):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   arr = []
   mycursor.execute("SELECT * FROM college WHERE college_code = %s", col_code)
   for row in mycursor:
     arr.append(row[0])
     arr.append(row[1])
+  db.close()
   return arr
 
 #For Table Population of Student
 
 def retrieveNumberOfStudents():
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   mycursor.execute("SELECT COUNT(student_id) FROM student")
-  return mycursor.fetchone()[0]
+  num = mycursor.fetchone()[0]
+  db.close()
+  return num
 
 def retrieveStudentsIdSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -53,9 +94,19 @@ def retrieveStudentsIdSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY student_id ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveStudentsFnameSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -63,9 +114,19 @@ def retrieveStudentsFnameSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY first_name ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveStudentsLnameSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -73,9 +134,19 @@ def retrieveStudentsLnameSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY last_name ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveStudentsYearSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -83,9 +154,19 @@ def retrieveStudentsYearSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY year_level ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveStudentsGenderSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -93,9 +174,19 @@ def retrieveStudentsGenderSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY gender ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveStudentsProgramSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -103,14 +194,35 @@ def retrieveStudentsProgramSort(page, rows):
   mycursor.execute("SELECT * FROM student ORDER BY program_code ASC LIMIT 50 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 #For table population of Program
 def retrieveNumberOfProgram():
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   mycursor.execute("SELECT COUNT(program_code) FROM program")
-  return mycursor.fetchone()[0]
+  num = mycursor.fetchone()[0]
+  db.close()
+  return num
 
 def retrieveProgramCodeSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -118,9 +230,19 @@ def retrieveProgramCodeSort(page, rows):
   mycursor.execute("SELECT * FROM program ORDER BY program_code ASC LIMIT 25 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveProgramNameSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -128,9 +250,19 @@ def retrieveProgramNameSort(page, rows):
   mycursor.execute("SELECT * FROM program ORDER BY program_name ASC LIMIT 25 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveProgramCollegeSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -138,14 +270,35 @@ def retrieveProgramCollegeSort(page, rows):
   mycursor.execute("SELECT * FROM program ORDER BY college_code ASC LIMIT 25 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 #For table population of College
 def retrieveNumberOfCollege():
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   mycursor.execute("SELECT COUNT(college_code) FROM college")
-  return mycursor.fetchone()[0]
+  num = mycursor.fetchone()[0]
+  db.close()
+  return num
 
 def retrieveCollegeCodeSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -153,9 +306,19 @@ def retrieveCollegeCodeSort(page, rows):
   mycursor.execute("SELECT * FROM college ORDER BY college_code ASC LIMIT 10 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveCollegeNameSort(page, rows):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   offset = []
   off = (page-1) * rows
   offset.append(off)
@@ -163,11 +326,21 @@ def retrieveCollegeNameSort(page, rows):
   mycursor.execute("SELECT * FROM college ORDER BY college_name ASC LIMIT 10 OFFSET %s", offset)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 #For search
 
 def retrieveSearchStudent(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   search = []
   for i in range(6):
     search.append(searched)
@@ -175,9 +348,19 @@ def retrieveSearchStudent(searched):
   mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s", search)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveSearchProgram(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   search = []
   for i in range(3):
     search.append(searched)
@@ -185,9 +368,19 @@ def retrieveSearchProgram(searched):
   mycursor.execute("SELECT * FROM program WHERE program_code LIKE %s OR program_name LIKE %s OR college_code LIKE %s", search)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
 
 def retrieveSearchCollege(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+
   search = []
   for i in range(2):
     search.append(searched)
@@ -195,4 +388,5 @@ def retrieveSearchCollege(searched):
   mycursor.execute("SELECT * FROM college WHERE college_code LIKE %s OR college_name LIKE %s", search)
   for row in mycursor:
     arr.append(row)
+  db.close()
   return arr
