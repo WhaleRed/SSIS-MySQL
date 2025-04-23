@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1066</width>
-    <height>629</height>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -99,7 +99,13 @@
      </font>
     </property>
     <property name="text">
-     <string/>
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="searchButton">
@@ -120,7 +126,7 @@
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="lPage">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -133,7 +139,7 @@
      <string>&gt;|</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="fPage">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -144,6 +150,19 @@
     </property>
     <property name="text">
      <string>|&lt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="jump">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>550</y>
+      <width>93</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Jump</string>
     </property>
    </widget>
   </widget>
@@ -170,6 +189,7 @@
     <addaction name="addCollege"/>
     <addaction name="deleteCollege"/>
     <addaction name="editCollege"/>
+    <addaction name="refreshTable"/>
    </widget>
    <widget class="QMenu" name="menuSort">
     <property name="title">
@@ -216,6 +236,11 @@
   <action name="sortName">
    <property name="text">
     <string>Name</string>
+   </property>
+  </action>
+  <action name="refreshTable">
+   <property name="text">
+    <string>Refresh Table</string>
    </property>
   </action>
  </widget>
