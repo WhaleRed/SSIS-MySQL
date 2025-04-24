@@ -131,7 +131,7 @@
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="fPage">
     <property name="geometry">
      <rect>
       <x>260</x>
@@ -144,7 +144,7 @@
      <string>|&lt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="lPage">
     <property name="geometry">
      <rect>
       <x>700</x>
