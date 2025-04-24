@@ -132,7 +132,18 @@ class editStudentWindow2(QMainWindow):
       item.append(self.programNew.text())
       item.append(studentData[0])
 
-      self.warning()
+      if '' in item:
+        self.emptyField()
+      else:
+        self.warning()
+
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
 
   def warning(self):
     self.warning = editWarning()
@@ -254,7 +265,19 @@ class editProgramWindow2(QMainWindow):
       item.append(self.programNameNew.text())
       item.append(self.collegeCodeNew.text())
       item.append(programData[0])
-      self.warning()
+
+      if '' in item:
+        self.emptyField()
+      else:
+        self.warning()
+
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
 
   def warning(self):
     self.warning = editWarning()
@@ -374,7 +397,18 @@ class editCollegeWindow2(QMainWindow):
       item.append(self.collegeNameNew.text())
       item.append(collegeData[0])
 
-      self.warning()
+      if '' in item:
+        self.emptyField()
+      else:
+        self.warning()
+
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
 
   def warning(self):
     self.warning = editWarning()
