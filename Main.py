@@ -435,6 +435,7 @@ class studentWindow(QMainWindow):
     self.window.show()  
 
   def refresh(self):
+    self.studentSortState = 0
     self.populateTable(self.studentSortState)
 
   def programView(self):
@@ -467,6 +468,10 @@ class studentWindow(QMainWindow):
 
   def sortByProgram(self):
     self.studentSortState = 5
+    self.populateTable(self.studentSortState)
+
+  def search(self):
+    self.studentSortState = 6
     self.populateTable(self.studentSortState)
 
   def populateTable(self, sortState):
@@ -542,23 +547,24 @@ class studentWindow(QMainWindow):
           self.studentTable.setItem(row, 4, QtWidgets.QTableWidgetItem(student[4]))
           self.studentTable.setItem(row, 5, QtWidgets.QTableWidgetItem(student[5]))
           row = row + 1
-
-  def search(self):
-    if self.searchBar.text() != '':
-      self.studentTable.clearContents()
-      result = retrieveData.retrieveSearchStudent(self.searchBar.text())
-      row = 0
-      for student in result:
-        self.studentTable.setItem(row, 0, QtWidgets.QTableWidgetItem(student[0]))
-        self.studentTable.setItem(row, 1, QtWidgets.QTableWidgetItem(student[1]))
-        self.studentTable.setItem(row, 2, QtWidgets.QTableWidgetItem(student[2]))
-        self.studentTable.setItem(row, 3, QtWidgets.QTableWidgetItem(str(student[3])))
-        self.studentTable.setItem(row, 4, QtWidgets.QTableWidgetItem(student[4]))
-        self.studentTable.setItem(row, 5, QtWidgets.QTableWidgetItem(student[5]))
-        row = row + 1
-    else:
-      self.studentTable.clearContents()
-      self.populateTable(self.studentSortState)
+      
+      case 6:
+        if self.searchBar.text() != '':
+          self.studentTable.clearContents()
+          result = retrieveData.retrieveSearchStudent(self.searchBar.text(), int(self.pageNum.text()))
+          row = 0
+          for student in result:
+            self.studentTable.setItem(row, 0, QtWidgets.QTableWidgetItem(student[0]))
+            self.studentTable.setItem(row, 1, QtWidgets.QTableWidgetItem(student[1]))
+            self.studentTable.setItem(row, 2, QtWidgets.QTableWidgetItem(student[2]))
+            self.studentTable.setItem(row, 3, QtWidgets.QTableWidgetItem(str(student[3])))
+            self.studentTable.setItem(row, 4, QtWidgets.QTableWidgetItem(student[4]))
+            self.studentTable.setItem(row, 5, QtWidgets.QTableWidgetItem(student[5]))
+            row = row + 1
+        else:       #If empyt search bar 
+          self.studentTable.clearContents()
+          self.studentSortState = 0
+          self.populateTable(self.studentSortState)
 
   def nextPage(self):
     page = int(self.pageNum.text()) + 1
@@ -583,7 +589,6 @@ class studentWindow(QMainWindow):
   def jumpPage(self):
     if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
       self.populateTable(self.studentSortState)
-
 
 
 class programWindow(QMainWindow):
@@ -633,6 +638,7 @@ class programWindow(QMainWindow):
     self.window.show()         
 
   def refresh(self):
+    self.programSortState = 0
     self.populateTable(self.programSortState)
 
   def studentView(self):
@@ -653,6 +659,10 @@ class programWindow(QMainWindow):
 
   def sortByCollege(self):
     self.programSortState = 2
+    self.populateTable(self.programSortState)
+
+  def search(self):
+    self.programSortState = 3
     self.populateTable(self.programSortState)
 
   def populateTable(self, sortState):
@@ -683,20 +693,21 @@ class programWindow(QMainWindow):
           self.programTable.setItem(row, 1, QtWidgets.QTableWidgetItem(program[1]))
           self.programTable.setItem(row, 2, QtWidgets.QTableWidgetItem(program[2]))
           row = row + 1
-
-  def search(self):
-    if self.searchBar.text() != '':
-      self.programTable.clearContents()
-      result = retrieveData.retrieveSearchProgram(self.searchBar.text())
-      row = 0
-      for program in result:
-        self.programTable.setItem(row, 0, QtWidgets.QTableWidgetItem(program[0]))
-        self.programTable.setItem(row, 1, QtWidgets.QTableWidgetItem(program[1]))
-        self.programTable.setItem(row, 2, QtWidgets.QTableWidgetItem(program[2]))
-        row = row + 1
-    else:
-      self.programTable.clearContents()
-      self.populateTable(self.programSortState)
+      
+      case 3:
+        if self.searchBar.text() != '':
+          self.programTable.clearContents()
+          result = retrieveData.retrieveSearchProgram(self.searchBar.text(), int(self.pageNum.text()))
+          row = 0
+          for program in result:
+            self.programTable.setItem(row, 0, QtWidgets.QTableWidgetItem(program[0]))
+            self.programTable.setItem(row, 1, QtWidgets.QTableWidgetItem(program[1]))
+            self.programTable.setItem(row, 2, QtWidgets.QTableWidgetItem(program[2]))
+            row = row + 1
+        else:
+          self.programTable.clearContents()
+          self.programSortState = 0
+          self.populateTable(self.programSortState)
 
   def nextPage(self):
     page = int(self.pageNum.text()) + 1
@@ -769,6 +780,7 @@ class collegeWindow(QMainWindow):
     self.window.show()
 
   def refresh(self):
+    self.collegeSortState = 0
     self.populateTable(self.collegeSortState)
 
   def studentView(self):
@@ -785,6 +797,10 @@ class collegeWindow(QMainWindow):
 
   def sortByName(self):
     self.collegeSortState = 1
+    self.populateTable(self.collegeSortState)
+
+  def search(self):
+    self.collegeSortState = 3
     self.populateTable(self.collegeSortState)
 
   def populateTable(self,sortState):
@@ -806,19 +822,20 @@ class collegeWindow(QMainWindow):
           self.collegeTable.setItem(row, 0, QtWidgets.QTableWidgetItem(college[0]))
           self.collegeTable.setItem(row, 1, QtWidgets.QTableWidgetItem(college[1]))
           row = row + 1
-
-  def search(self):
-    if self.searchBar.text() != '':
-      self.collegeTable.clearContents()
-      result = retrieveData.retrieveSearchCollege(self.searchBar.text())
-      row = 0
-      for college in result:
-        self.collegeTable.setItem(row, 0, QtWidgets.QTableWidgetItem(college[0]))
-        self.collegeTable.setItem(row, 1, QtWidgets.QTableWidgetItem(college[1]))
-        row = row + 1
-    else:
-      self.collegeTable.clearContents()
-      self.populateTable(self.collegeSortState)
+      
+      case 2:
+        if self.searchBar.text() != '':
+          self.collegeTable.clearContents()
+          result = retrieveData.retrieveSearchCollege(self.searchBar.text(), int(self.pageNum.text()))
+          row = 0
+          for college in result:
+            self.collegeTable.setItem(row, 0, QtWidgets.QTableWidgetItem(college[0]))
+            self.collegeTable.setItem(row, 1, QtWidgets.QTableWidgetItem(college[1]))
+            row = row + 1
+        else:
+          self.collegeTable.clearContents()
+          self.collegeSortState = 0
+          self.populateTable(self.collegeSortState)
 
   def nextPage(self):
     page = int(self.pageNum.text()) + 1
