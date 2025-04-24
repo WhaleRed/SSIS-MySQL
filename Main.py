@@ -4,6 +4,7 @@ import delete
 import exists
 import retrieveData
 import edit, math
+import re
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
@@ -31,9 +32,14 @@ class addStudentWindow(QMainWindow):
       student.append(self.ylvlAdd.currentText())
       student.append(self.genderAdd.currentText())
       student.append(self.programAdd.text())
+
       
       if '' in student:
         self.emptyField()
+      elif self.valid_id(student[0]) == False:
+        self.wrongFormat()
+      elif exists.programExists(self.programAdd.text()) == False:
+        self.doesNotExistWarning()
       else:
         add.addStudent(student)
   
@@ -44,9 +50,18 @@ class addStudentWindow(QMainWindow):
   def wrongFormat(self):
     self.warning = wrongInputFormat()
     self.warning.show()
+  
+  def valid_id(self, idnumber):
+    pattern = r"^\d{4}-\d{4}$"  
+    return bool(re.match(pattern, idnumber))
 
   def alreadyExist(self):
     self.warning = aeWarning()
+    self.warning.show()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.label.setText("Data for the Program does not Exist.")
     self.warning.show()
 
 class deleteStudentWindow(QMainWindow):
@@ -134,8 +149,16 @@ class editStudentWindow2(QMainWindow):
 
       if '' in item:
         self.emptyField()
+      elif self.valid_id(item[0]) == False:
+        self.wrongFormat()
+      elif exists.programExists(self.programNew.text()) == False:
+        self.doesNotExistWarning()
       else:
         self.warning()
+
+  def valid_id(self, idnumber):
+    pattern = r"^\d{4}-\d{4}$"  
+    return bool(re.match(pattern, idnumber))
 
   def emptyField(self):
     self.warning = emptyFieldWarning()
@@ -151,6 +174,11 @@ class editStudentWindow2(QMainWindow):
 
   def alreadyExist(self):
     self.warning = aeWarning()
+    self.warning.show()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.label.setText("Data for the Program does not Exist.")
     self.warning.show()
 
 #Manage Windows for Program
@@ -174,6 +202,8 @@ class addProgramWindow(QMainWindow):
 
       if '' in program:
         self.emptyField()
+      elif exists.collegeExists(self.collegeCodeAdd.text()) == False:
+        self.doesNotExistWarning()
       else:
         add.addProgram(program)
 
@@ -187,6 +217,11 @@ class addProgramWindow(QMainWindow):
   
   def alreadyExist(self):
     self.warning = aeWarning()
+    self.warning.show()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.label.setText("Data for the College does not Exist.")
     self.warning.show()
 
 class deleteProgramWindow(QMainWindow):
@@ -268,6 +303,8 @@ class editProgramWindow2(QMainWindow):
 
       if '' in item:
         self.emptyField()
+      elif exists.collegeExists(self.collegeCodeNew.text()) == False:
+        self.doesNotExistWarning()
       else:
         self.warning()
 
@@ -285,6 +322,11 @@ class editProgramWindow2(QMainWindow):
 
   def alreadyExist(self):
     self.warning = aeWarning()
+    self.warning.show()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.label.setText("Data for the College does not Exist.")
     self.warning.show()
 
 #Manage Windows for College
