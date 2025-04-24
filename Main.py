@@ -32,8 +32,19 @@ class addStudentWindow(QMainWindow):
       student.append(self.genderAdd.currentText())
       student.append(self.programAdd.text())
       
-      add.addStudent(student)
+      if '' in student:
+        self.emptyField()
+      else:
+        add.addStudent(student)
   
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
+
   def alreadyExist(self):
     self.warning = aeWarning()
     self.warning.show()
@@ -150,8 +161,18 @@ class addProgramWindow(QMainWindow):
       program.append(self.programNameAdd.text())
       program.append(self.collegeCodeAdd.text())
 
-      add.addProgram(program)
+      if '' in program:
+        self.emptyField()
+      else:
+        add.addProgram(program)
 
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
   
   def alreadyExist(self):
     self.warning = aeWarning()
@@ -260,8 +281,19 @@ class addCollegeWindow(QMainWindow):
       college = []
       college.append(self.collegeCodeAdd.text())
       college.append(self.collegeNameAdd.text())
+      
+      if '' in college:
+        self.emptyField()
+      else:
+        add.addCollege(college)
 
-      add.addCollege(college)
+  def emptyField(self):
+    self.warning = emptyFieldWarning()
+    self.warning.show()
+
+  def wrongFormat(self):
+    self.warning = wrongInputFormat()
+    self.warning.show()
 
   def alreadyExist(self):
     self.warning = aeWarning()
@@ -382,6 +414,16 @@ class aeWarning(QDialog):
   def __init__(self):
     super(aeWarning, self).__init__()
     loadUi("aeWarning.ui", self)
+
+class wrongInputFormat(QDialog):
+  def __init__(self):
+    super(wrongInputFormat, self).__init__()
+    loadUi("wIF.ui", self)
+
+class emptyFieldWarning(QDialog):
+  def __init__(self):
+    super(emptyFieldWarning, self).__init__()
+    loadUi("eFW.ui", self)
 
 #The 3 Main windows
 class studentWindow(QMainWindow):
@@ -800,7 +842,7 @@ class collegeWindow(QMainWindow):
     self.populateTable(self.collegeSortState)
 
   def search(self):
-    self.collegeSortState = 3
+    self.collegeSortState = 2
     self.populateTable(self.collegeSortState)
 
   def populateTable(self,sortState):
