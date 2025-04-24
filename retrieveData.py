@@ -331,7 +331,7 @@ def retrieveCollegeNameSort(page, rows):
 
 #For search
 
-def retrieveSearchStudent(searched):
+def retrieveSearchStudent(searched, page):
   db = mysql.connector.connect(
     host="localhost",
     user = "root",
@@ -344,14 +344,16 @@ def retrieveSearchStudent(searched):
   search = []
   for i in range(6):
     search.append(searched)
+  offset = (page-1) * 50
+  search.append(offset)
   arr = []
-  mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s", search)
+  mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s ORDER BY student_id ASC LIMIT 50 OFFSET %s", search)
   for row in mycursor:
     arr.append(row)
   db.close()
   return arr
 
-def retrieveSearchProgram(searched):
+def retrieveSearchProgram(searched, page):
   db = mysql.connector.connect(
     host="localhost",
     user = "root",
@@ -364,14 +366,16 @@ def retrieveSearchProgram(searched):
   search = []
   for i in range(3):
     search.append(searched)
+  offset = (page-1) * 25
+  search.append(offset)
   arr = []
-  mycursor.execute("SELECT * FROM program WHERE program_code LIKE %s OR program_name LIKE %s OR college_code LIKE %s", search)
+  mycursor.execute("SELECT * FROM program WHERE program_code LIKE %s OR program_name LIKE %s OR college_code LIKE %s ORDER BY program_code ASC LIMIT 25 OFFSET %s", search)
   for row in mycursor:
     arr.append(row)
   db.close()
   return arr
 
-def retrieveSearchCollege(searched):
+def retrieveSearchCollege(searched, page):
   db = mysql.connector.connect(
     host="localhost",
     user = "root",
@@ -384,8 +388,10 @@ def retrieveSearchCollege(searched):
   search = []
   for i in range(2):
     search.append(searched)
+  offset = (page-1) * 10
+  search.append(offset)
   arr = []
-  mycursor.execute("SELECT * FROM college WHERE college_code LIKE %s OR college_name LIKE %s", search)
+  mycursor.execute("SELECT * FROM college WHERE college_code LIKE %s OR college_name LIKE %s ORDER BY college_code ASC LIMIT 10 OFFSET %s", search)
   for row in mycursor:
     arr.append(row)
   db.close()
