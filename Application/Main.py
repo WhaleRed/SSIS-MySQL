@@ -1,10 +1,12 @@
 import sys
-import add
-import delete
-import exists
-import retrieveData
-import edit, math
+import os
+import math
 import re
+from src.modules import add
+from src.modules import delete
+from src.modules import exists
+from src. modules import retrieveData
+from src.modules import edit
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
@@ -14,7 +16,9 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 class addStudentWindow(QMainWindow):
   def __init__(self):
     super(addStudentWindow, self).__init__()
-    loadUi("addStudentWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'addStudentWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.addStudentSubmit.clicked.connect(self.submit)
@@ -67,7 +71,9 @@ class addStudentWindow(QMainWindow):
 class deleteStudentWindow(QMainWindow):
   def __init__(self):
     super(deleteStudentWindow, self).__init__()
-    loadUi("deleteStudentWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'deleteStudentWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect Button
     self.deleteStudentSubmit.clicked.connect(self.deleteStudent)
@@ -92,7 +98,9 @@ class deleteStudentWindow(QMainWindow):
 class editStudentWindow1(QMainWindow):
   def __init__(self):
     super(editStudentWindow1, self).__init__()
-    loadUi("editStudentWindow1.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editStudentWindow1.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.editingStudent.clicked.connect(self.check)
@@ -119,7 +127,10 @@ class editStudentWindow1(QMainWindow):
 class editStudentWindow2(QMainWindow):
   def __init__(self):
     super(editStudentWindow2, self).__init__()
-    loadUi("editStudentWindow2.ui", self) 
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editStudentWindow2.ui')
+    loadUi(ui_path, self)
+
 
     #Connect
     self.submitStudent.clicked.connect(self.editStudent)
@@ -185,7 +196,9 @@ class editStudentWindow2(QMainWindow):
 class addProgramWindow(QMainWindow):
   def __init__(self):
     super(addProgramWindow,self).__init__()
-    loadUi("addProgramWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'addProgramWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.addProgramSubmit.clicked.connect(self.submit)
@@ -227,7 +240,9 @@ class addProgramWindow(QMainWindow):
 class deleteProgramWindow(QMainWindow):
   def __init__(self):
     super(deleteProgramWindow,self).__init__()
-    loadUi("deleteProgramWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'deleteProgramWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.deleteProgramSubmit.clicked.connect(self.deleteProgram)
@@ -252,7 +267,9 @@ class deleteProgramWindow(QMainWindow):
 class editProgramWindow1(QMainWindow):
   def __init__(self):
     super(editProgramWindow1, self).__init__()
-    loadUi("editProgramWindow1.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editProgramWindow1.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.editingProgram.clicked.connect(self.check)
@@ -279,7 +296,9 @@ class editProgramWindow1(QMainWindow):
 class editProgramWindow2(QMainWindow):
   def __init__(self):
     super(editProgramWindow2, self).__init__()
-    loadUi("editProgramWindow2.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editProgramWindow2.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.submitProgram.clicked.connect(self.editProgram)
@@ -333,7 +352,9 @@ class editProgramWindow2(QMainWindow):
 class addCollegeWindow(QMainWindow):
   def __init__(self):
     super(addCollegeWindow,self).__init__()
-    loadUi("addCollegeWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'addCollegeWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.addCollegeSubmit.clicked.connect(self.submit)
@@ -367,7 +388,9 @@ class addCollegeWindow(QMainWindow):
 class deleteCollegeWindow(QMainWindow):
   def __init__(self):
     super(deleteCollegeWindow, self).__init__()
-    loadUi("deleteCollegeWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'deleteCollegeWindow.ui')
+    loadUi(ui_path, self)
 
     #Conncect
     self.deleteCollegeSubmit.clicked.connect(self.deleteCollege)
@@ -392,7 +415,9 @@ class deleteCollegeWindow(QMainWindow):
 class editCollegeWindow1(QMainWindow):
   def __init__(self):
     super(editCollegeWindow1, self).__init__()
-    loadUi("editCollegeWindow1.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editCollegeWindow1.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.editingCollege.clicked.connect(self.check)
@@ -419,7 +444,9 @@ class editCollegeWindow1(QMainWindow):
 class editCollegeWindow2(QMainWindow):
   def __init__(self):
     super(editCollegeWindow2, self).__init__()
-    loadUi("editCollegeWindow2.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'editCollegeWindow2.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.submitCollege.clicked.connect(self.editCollege)
@@ -464,7 +491,9 @@ class editCollegeWindow2(QMainWindow):
 class deleteWarning(QDialog):
   def __init__(self):
     super(deleteWarning, self).__init__()
-    loadUi("deleteWarning.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'deleteWarning.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.yes.clicked.connect(confirmDelete)
@@ -474,7 +503,9 @@ class deleteWarning(QDialog):
 class editWarning(QDialog):
   def __init__(self):
     super(editWarning, self).__init__()
-    loadUi("editWarning.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'editWarning.ui')
+    loadUi(ui_path, self)
 
     #Connect
     self.yes.clicked.connect(confirmEdit)
@@ -484,28 +515,38 @@ class editWarning(QDialog):
 class dneWarning(QDialog):
   def __init__(self):
     super(dneWarning, self).__init__()
-    loadUi("dneWarning.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'dneWarning.ui')
+    loadUi(ui_path, self)
 
 class aeWarning(QDialog):
   def __init__(self):
     super(aeWarning, self).__init__()
-    loadUi("aeWarning.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'aeWarning.ui')
+    loadUi(ui_path, self)
 
 class wrongInputFormat(QDialog):
   def __init__(self):
     super(wrongInputFormat, self).__init__()
-    loadUi("wIF.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'wIF.ui')
+    loadUi(ui_path, self)
 
 class emptyFieldWarning(QDialog):
   def __init__(self):
     super(emptyFieldWarning, self).__init__()
-    loadUi("eFW.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'warnings', 'eFW.ui')
+    loadUi(ui_path, self)
 
 #The 3 Main windows
 class studentWindow(QMainWindow):
   def __init__(self):
     super(studentWindow, self).__init__()
-    loadUi("studentWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'studentWindow.ui')
+    loadUi(ui_path, self)
 
     #Conneect Menu
     self.viewPrograms.triggered.connect(self.programView)
@@ -595,6 +636,7 @@ class studentWindow(QMainWindow):
   def populateTable(self, sortState):
     match sortState:
       case 0:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsIdSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -607,6 +649,7 @@ class studentWindow(QMainWindow):
           row = row + 1
 
       case 1:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsFnameSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -619,6 +662,7 @@ class studentWindow(QMainWindow):
           row = row + 1
 
       case 2:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsLnameSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -631,6 +675,7 @@ class studentWindow(QMainWindow):
           row = row + 1
 
       case 3:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsYearSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -643,6 +688,7 @@ class studentWindow(QMainWindow):
           row = row + 1
 
       case 4:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsGenderSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -655,6 +701,7 @@ class studentWindow(QMainWindow):
           row = row + 1
 
       case 5:
+        self.studentTable.clearContents()
         students = retrieveData.retrieveStudentsProgramSort(int(self.pageNum.text()),50)
         row = 0
         for student in students:
@@ -712,7 +759,9 @@ class studentWindow(QMainWindow):
 class programWindow(QMainWindow):
   def __init__(self):
     super(programWindow, self).__init__()
-    loadUi("programWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'programWindow.ui')
+    loadUi(ui_path, self)
     
     #Connect Menu
     self.viewStudents.triggered.connect(self.studentView)
@@ -786,6 +835,7 @@ class programWindow(QMainWindow):
   def populateTable(self, sortState):
     match sortState:
       case 0:
+        self.programTable.clearContents()
         programs = retrieveData.retrieveProgramCodeSort(int(self.pageNum.text()), 25)
         row = 0
         for program in programs:
@@ -795,6 +845,7 @@ class programWindow(QMainWindow):
           row = row + 1
 
       case 1:
+        self.programTable.clearContents()
         programs = retrieveData.retrieveProgramNameSort(int(self.pageNum.text()), 25)
         row = 0
         for program in programs:
@@ -804,6 +855,7 @@ class programWindow(QMainWindow):
           row = row + 1
 
       case 2:
+        self.programTable.clearContents()
         programs = retrieveData.retrieveProgramCollegeSort(int(self.pageNum.text()), 25)
         row = 0
         for program in programs:
@@ -855,7 +907,9 @@ class programWindow(QMainWindow):
 class collegeWindow(QMainWindow):
   def __init__(self):
     super(collegeWindow, self).__init__()
-    loadUi("collegeWindow.ui", self)
+    base_dir = os.path.dirname(__file__)
+    ui_path = os.path.join(base_dir, 'ui', 'windows', 'collegeWindow.ui')
+    loadUi(ui_path, self)
 
     #Connect Menu
     self.viewStudents.triggered.connect(self.studentView)
