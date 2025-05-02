@@ -373,13 +373,17 @@ def retrieveSearchStudent(searched, page):
 
   mycursor = db.cursor()
 
+  pattern = f"%{searched}%"
   search = []
   for i in range(6):
-    search.append(searched)
+    search.append(pattern)
   offset = (page-1) * 50
   search.append(offset)
   arr = []
-  mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s ORDER BY student_id ASC LIMIT 50 OFFSET %s", search)
+  if searched.isdigit() and len(searched) == 1:
+        mycursor.execute("SELECT * FROM student WHERE year_level LIKE %s ORDER BY student_id ASC LIMIT 50 OFFSET %s", (pattern, offset))
+  else:
+    mycursor.execute("SELECT * FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s ORDER BY student_id ASC LIMIT 50 OFFSET %s", search)
   for row in mycursor:
     arr.append(row)
   db.close()
