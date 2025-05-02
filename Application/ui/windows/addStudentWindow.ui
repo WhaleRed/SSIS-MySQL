@@ -248,12 +248,12 @@
      </property>
     </item>
    </widget>
-   <widget class="QLineEdit" name="programAdd">
+   <widget class="QComboBox" name="programAdd">
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>211</y>
-      <width>141</width>
+      <y>210</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>

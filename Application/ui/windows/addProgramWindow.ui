@@ -98,24 +98,6 @@
      </font>
     </property>
    </widget>
-   <widget class="QLineEdit" name="collegeCodeAdd">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>130</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="addProgramSubmit">
     <property name="geometry">
      <rect>
@@ -132,6 +114,21 @@
     </property>
     <property name="text">
      <string>Add Program</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="collegeCodeAdd">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>140</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
    </widget>
   </widget>

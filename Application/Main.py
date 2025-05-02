@@ -23,6 +23,10 @@ class addStudentWindow(QMainWindow):
     #Connect
     self.addStudentSubmit.clicked.connect(self.submit)
     self.addStudentSubmit.clicked.connect(self.close)
+
+    self.combo_choices = retrieveData.retrieveProgramCode()
+    for row in self.combo_choices:
+      self.programAdd.addItem(row[0])
   
   def submit(self):
     if exists.studentExists(self.idAdd.text()) == True:
@@ -142,7 +146,12 @@ class editStudentWindow2(QMainWindow):
     self.lnameNew.setText(studentData[2])
     self.ylvlNew.setCurrentText(str(studentData[3]))
     self.genderNew.setCurrentText(studentData[4])
-    self.programNew.setText(studentData[5])
+
+    self.combo_choices = retrieveData.retrieveProgramCode()
+    for row in self.combo_choices:
+      self.programNew.addItem(row[0])
+    
+    self.programNew.setCurrentText(studentData[5])
   
   def editStudent(self):
     if exists.studentExists(self.idNew.text()) == True and self.idNew.text() != studentData[0]:
@@ -203,6 +212,9 @@ class addProgramWindow(QMainWindow):
     #Connect
     self.addProgramSubmit.clicked.connect(self.submit)
     self.addProgramSubmit.clicked.connect(self.close)
+    self.combo_choices = retrieveData.retrieveCollegeCode()
+    for row in self.combo_choices:
+      self.collegeCodeAdd.addItem(row[0])
   
   def submit(self):
     if exists.programExists(self.programCodeAdd.text()) == True:
@@ -307,7 +319,10 @@ class editProgramWindow2(QMainWindow):
     #Set current Data values
     self.programCodeNew.setText(programData[0])
     self.programNameNew.setText(programData[1])
-    self.collegeCodeNew.setText(programData[2])
+    self.combo_choices = retrieveData.retrieveCollegeCode()
+    for row in self.combo_choices:
+      self.collegeCodeNew.addItem(row[0])
+    self.collegeCodeNew.setCurrentText(programData[2])
   
   def editProgram(self):
     if exists.programExists(self.programCodeNew.text()) == True and self.programCodeNew.text() != programData[0]:

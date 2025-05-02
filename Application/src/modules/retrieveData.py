@@ -198,6 +198,22 @@ def retrieveStudentsProgramSort(page, rows):
   return arr
 
 #For table population of Program
+def retrieveProgramCode():
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+  arr = []
+  mycursor.execute("SELECT program_code FROM program ")
+  for row in mycursor:
+    arr.append(row)
+  db.close()
+  return arr
+
 def retrieveNumberOfProgram():
   db = mysql.connector.connect(
     host="localhost",
@@ -274,6 +290,22 @@ def retrieveProgramCollegeSort(page, rows):
   return arr
 
 #For table population of College
+def retrieveCollegeCode():
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+  arr = []
+  mycursor.execute("SELECT college_code FROM college ")
+  for row in mycursor:
+    arr.append(row)
+  db.close()
+  return arr
+
 def retrieveNumberOfCollege():
   db = mysql.connector.connect(
     host="localhost",
