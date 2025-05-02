@@ -399,9 +399,10 @@ def retrieveSearchProgram(searched, page):
 
   mycursor = db.cursor()
 
+  pattern = f"%{searched}%"
   search = []
   for i in range(3):
-    search.append(searched)
+    search.append(pattern)
   offset = (page-1) * 25
   search.append(offset)
   arr = []
@@ -421,9 +422,10 @@ def retrieveSearchCollege(searched, page):
 
   mycursor = db.cursor()
 
+  pattern = f"%{searched}%"
   search = []
   for i in range(2):
-    search.append(searched)
+    search.append(pattern)
   offset = (page-1) * 10
   search.append(offset)
   arr = []

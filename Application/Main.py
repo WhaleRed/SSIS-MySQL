@@ -39,14 +39,14 @@ class addStudentWindow(QMainWindow):
       student.append(self.lnameAdd.text())
       student.append(self.ylvlAdd.currentText())
       student.append(self.genderAdd.currentText())
-      student.append(self.programAdd.text())
+      student.append(self.programAdd.currentText())
 
       
       if '' in student:
         self.emptyField()
       elif self.valid_id(student[0]) == False:
         self.wrongFormat()
-      elif exists.programExists(self.programAdd.text()) == False:
+      elif exists.programExists(self.programAdd.currentText()) == False:
         self.doesNotExistWarning()
       else:
         add.addStudent(student)
@@ -164,14 +164,14 @@ class editStudentWindow2(QMainWindow):
       item.append(self.lnameNew.text())
       item.append(self.ylvlNew.currentText())
       item.append(self.genderNew.currentText())
-      item.append(self.programNew.text())
+      item.append(self.programNew.currentText())
       item.append(studentData[0])
 
       if '' in item:
         self.emptyField()
       elif self.valid_id(item[0]) == False:
         self.wrongFormat()
-      elif exists.programExists(self.programNew.text()) == False:
+      elif exists.programExists(self.programNew.currentText()) == False:
         self.doesNotExistWarning()
       else:
         self.warning()
@@ -223,11 +223,11 @@ class addProgramWindow(QMainWindow):
       program = []
       program.append(self.programCodeAdd.text())
       program.append(self.programNameAdd.text())
-      program.append(self.collegeCodeAdd.text())
+      program.append(self.collegeCodeAdd.currentText())
 
       if '' in program:
         self.emptyField()
-      elif exists.collegeExists(self.collegeCodeAdd.text()) == False:
+      elif exists.collegeExists(self.collegeCodeAdd.currentText()) == False:
         self.doesNotExistWarning()
       else:
         add.addProgram(program)
@@ -332,12 +332,12 @@ class editProgramWindow2(QMainWindow):
       item = []
       item.append(self.programCodeNew.text())
       item.append(self.programNameNew.text())
-      item.append(self.collegeCodeNew.text())
+      item.append(self.collegeCodeNew.currentText())
       item.append(programData[0])
 
       if '' in item:
         self.emptyField()
-      elif exists.collegeExists(self.collegeCodeNew.text()) == False:
+      elif exists.collegeExists(self.collegeCodeNew.currentText()) == False:
         self.doesNotExistWarning()
       else:
         self.warning()
