@@ -763,12 +763,28 @@ class studentWindow(QMainWindow):
       self.populateTable(self.studentSortState)
 
   def lastPage(self):
-    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
-    self.populateTable(self.studentSortState)
+    if self.studentSortState == 6:
+      self.pageNum.setText(str(math.ceil(retrieveData.rnss(self.searchBar.text())/50)))
+      self.populateTable(self.studentSortState)
+    else:
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
+      self.populateTable(self.studentSortState)
   
   def jumpPage(self):
-    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
-      self.populateTable(self.studentSortState)
+    if self.studentSortState == 6:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.studentSortState = 0
+        self.populateTable(self.studentSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.rnss(self.searchBar.text())/50):
+        self.populateTable(self.studentSortState)
+    else:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.studentSortState = 0
+        self.populateTable(self.studentSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
+        self.populateTable(self.studentSortState)
 
 
 class programWindow(QMainWindow):
@@ -911,12 +927,28 @@ class programWindow(QMainWindow):
       self.populateTable(self.programSortState)
 
   def lastPage(self):
-    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
-    self.populateTable(self.programSortState)
+    if self.programSortState == 3:
+      self.pageNum.setText(str(math.ceil(retrieveData.rnsp(self.searchBar.text())/25)))
+      self.populateTable(self.programSortState)
+    else:
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
+      self.populateTable(self.programSortState)
   
   def jumpPage(self):
-    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfProgram()/25):
-      self.populateTable(self.programSortState)
+    if self.programSortState == 3:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.programSortState = 0
+        self.populateTable(self.programSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.rnsp(self.searchBar.text())/25):
+        self.populateTable(self.programSortState)
+    else:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.programSortState = 0
+        self.populateTable(self.programSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfProgram()/25):
+        self.populateTable(self.programSortState)
 
 
 class collegeWindow(QMainWindow):
@@ -1041,12 +1073,29 @@ class collegeWindow(QMainWindow):
       self.populateTable(self.collegeSortState)
 
   def lastPage(self):
-    self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
-    self.populateTable(self.collegeSortState)
+    if self.collegeSortState == 2:
+      self.pageNum.setText(str(math.ceil(retrieveData.rnsc(self.searchBar.text())/10)))
+      self.populateTable(self.collegeSortState)
+    else:
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
+      self.populateTable(self.collegeSortState)
   
   def jumpPage(self):
-    if int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfCollege()/10):
-      self.populateTable(self.collegeSortState)
+    if self.collegeSortState == 2:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.collegeSortState = 0
+        self.populateTable(self.collegeSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.rnsc(self.searchBar.text())/10):
+        self.populateTable(self.collegeSortState)
+    else:
+      if self.pageNum.text() == "" or self.pageNum.text() == "0":
+        self.pageNum.setText("1")
+        self.collegeSortState = 0
+        self.populateTable(self.collegeSortState)
+      elif int(self.pageNum.text()) >= 1 and int(self.pageNum.text()) <= math.ceil(retrieveData.retrieveNumberOfCollege()/10):
+        self.populateTable(self.collegeSortState)
+
 
 #Global functions
 def confirmDelete():

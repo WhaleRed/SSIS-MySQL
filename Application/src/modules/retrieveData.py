@@ -362,7 +362,48 @@ def retrieveCollegeNameSort(page, rows):
   return arr
 
 #For search
+def rnss(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
 
+  mycursor = db.cursor()
+  query = "SELECT COUNT(program_code) FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s"
+  mycursor.execute(query, (f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%",))
+  num = mycursor.fetchone()[0]
+  return num
+
+def rnsp(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+  query = "SELECT COUNT(program_code) FROM program WHERE program_code LIKE %s OR program_name LIKE %s OR college_code LIKE %s"
+  mycursor.execute(query, (f"%{searched}%", f"%{searched}%", f"%{searched}%",))
+  num = mycursor.fetchone()[0]
+  return num
+
+def rnsc(searched):
+  db = mysql.connector.connect(
+    host="localhost",
+    user = "root",
+    password="jupiter'sfear",
+    database="ssis"
+    )
+
+  mycursor = db.cursor()
+  query = "SELECT COUNT(college_code) FROM program WHERE college_code LIKE %s OR college_name LIKE %s"
+  mycursor.execute(query, (f"%{searched}%", f"%{searched}%",))
+  num = mycursor.fetchone()[0]
+  return num
+  
 def retrieveSearchStudent(searched, page):
   db = mysql.connector.connect(
     host="localhost",
