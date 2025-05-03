@@ -605,10 +605,6 @@ class studentWindow(QMainWindow):
       item = idnum.text()
       self.warning()
 
-  def doesNotExistWarning(self):
-    self.warning = dneWarning()
-    self.warning.show()
-
   def warning(self):
     self.warning = deleteWarning()
     self.warning.show()
@@ -836,7 +832,7 @@ class programWindow(QMainWindow):
     self.viewStudents.triggered.connect(self.studentView)
     self.viewColleges.triggered.connect(self.collegeView)
     self.addProgram.triggered.connect(self.addWindow)
-    self.deleteProgram.triggered.connect(self.deleteWindow)
+    self.deleteProgram.triggered.connect(self.delPrg)
     self.editProgram.triggered.connect(self.editWindow1)
     self.refreshTable.triggered.connect(self.refresh)
     self.sortCode.triggered.connect(self.sortByCode)
@@ -865,13 +861,41 @@ class programWindow(QMainWindow):
     self.window = addProgramWindow()
     self.window.show()
 
+  def delPrg(self):
+    progcode = self.programTable.currentItem()
+    if exists.programExists(progcode.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      global item
+      item = progcode.text()
+      self.warning()
+
+  def warning(self):
+    self.warning = deleteWarning()
+    self.warning.show()
+
   def deleteWindow(self):
     self.window = deleteProgramWindow()
     self.window.show()
 
   def editWindow1(self):
-    self.window = editProgramWindow1()
-    self.window.show()         
+    progcode = self.programTable.currentItem()
+    if exists.programExists(progcode.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      arr = []
+      arr.append(progcode.text())
+      global programData
+      programData = retrieveData.retrieveProgram(arr)
+      self.editWindow2()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
+
+  def editWindow2(self):
+    self.window = editProgramWindow2()
+    self.window.show()        
 
   def refresh(self):
     self.programSortState = 0
