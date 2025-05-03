@@ -567,7 +567,7 @@ class studentWindow(QMainWindow):
     self.viewPrograms.triggered.connect(self.programView)
     self.viewColleges.triggered.connect(self.collegeView)
     self.addStudent.triggered.connect(self.addWindow)
-    self.deleteStudent.triggered.connect(self.deleteWindow)
+    self.deleteStudent.triggered.connect(self.deleteStud)
     self.editStudent.triggered.connect(self.editWindow1)
     self.refreshTable.triggered.connect(self.refresh)
     self.sortID.triggered.connect(self.sortById)
@@ -596,6 +596,23 @@ class studentWindow(QMainWindow):
     self.studentSortState = 0
     self.populateTable(self.studentSortState)
 
+  def deleteStud(self):
+    idnum = self.studentTable.currentItem()
+    if exists.studentExists(idnum.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      global item
+      item = idnum.text()
+      self.warning()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
+
+  def warning(self):
+    self.warning = deleteWarning()
+    self.warning.show()
+
   def addWindow(self):
     self.window = addStudentWindow()
     self.window.show()  
@@ -605,8 +622,23 @@ class studentWindow(QMainWindow):
     self.window.show()  
   
   def editWindow1(self):
-    self.window = editStudentWindow1()
-    self.window.show()  
+    idnum = self.studentTable.currentItem()
+    if exists.studentExists(idnum.text()) == False:
+      self.doesNotExistWarning()
+    else:
+      arr = []
+      arr.append(idnum.text())
+      global studentData
+      studentData = retrieveData.retrieveStudent(arr)
+      self.editWindow2()
+
+  def doesNotExistWarning(self):
+    self.warning = dneWarning()
+    self.warning.show()
+
+  def editWindow2(self):
+    self.window = editStudentWindow2()
+    self.window.show()
 
   def refresh(self):
     self.studentSortState = 0
