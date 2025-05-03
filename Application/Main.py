@@ -747,9 +747,15 @@ class studentWindow(QMainWindow):
           self.populateTable(self.studentSortState)
 
   def nextPage(self):
-    page = int(self.pageNum.text()) + 1
-    self.pageNum.setText(str(page))
-    self.populateTable(self.studentSortState)
+    if self.studentSortState == 6:
+      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnss(self.searchBar.text())/50):
+        self.pageNum.setText(str(math.ceil(retrieveData.rnss(self.searchBar.text())/50)))
+    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
+    else:
+      page = int(self.pageNum.text()) + 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.studentSortState)
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
@@ -911,9 +917,15 @@ class programWindow(QMainWindow):
           self.populateTable(self.programSortState)
 
   def nextPage(self):
-    page = int(self.pageNum.text()) + 1
-    self.pageNum.setText(str(page))
-    self.populateTable(self.programSortState)
+    if self.programSortState == 3:
+      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnsp(self.searchBar.text())/25):
+        self.pageNum.setText(str(math.ceil(retrieveData.rnsp(self.searchBar.text())/25)))
+    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfProgram()/25):
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
+    else:
+      page = int(self.pageNum.text()) + 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.programSortState)
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
@@ -1057,9 +1069,15 @@ class collegeWindow(QMainWindow):
           self.populateTable(self.collegeSortState)
 
   def nextPage(self):
-    page = int(self.pageNum.text()) + 1
-    self.pageNum.setText(str(page))
-    self.populateTable(self.collegeSortState)
+    if self.collegeSortState == 2:
+      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnsc(self.searchBar.text())/10):
+        self.pageNum.setText(str(math.ceil(retrieveData.rnsc(self.searchBar.text())/10)))
+    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfCollege()/10):
+      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
+    else:
+      page = int(self.pageNum.text()) + 1
+      self.pageNum.setText(str(page))
+      self.populateTable(self.collegeSortState)
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
