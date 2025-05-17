@@ -776,14 +776,20 @@ class studentWindow(QMainWindow):
 
   def nextPage(self):
     if self.studentSortState == 6:
-      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnss(self.searchBar.text())/50):
-        self.pageNum.setText(str(math.ceil(retrieveData.rnss(self.searchBar.text())/50)))
-    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfStudents()/50):
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
+      total_records = retrieveData.rnss(self.searchBar.text())
     else:
-      page = int(self.pageNum.text()) + 1
-      self.pageNum.setText(str(page))
-      self.populateTable(self.studentSortState)
+        total_records = retrieveData.retrieveNumberOfStudents()
+
+    max_page = math.ceil(total_records / 50)
+    current_page = int(self.pageNum.text())
+
+    if current_page < max_page:
+        current_page += 1
+        self.pageNum.setText(str(current_page))
+        self.populateTable(self.studentSortState)
+    else:
+        # Optional: reset to last page or give feedback
+        self.pageNum.setText(str(max_page))
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
@@ -798,11 +804,13 @@ class studentWindow(QMainWindow):
 
   def lastPage(self):
     if self.studentSortState == 6:
-      self.pageNum.setText(str(math.ceil(retrieveData.rnss(self.searchBar.text())/50)))
-      self.populateTable(self.studentSortState)
+        total_records = retrieveData.rnss(self.searchBar.text())
     else:
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfStudents()/50)))
-      self.populateTable(self.studentSortState)
+        total_records = retrieveData.retrieveNumberOfStudents()
+
+    max_page = max(1, math.ceil(total_records / 50))
+    self.pageNum.setText(str(max_page))
+    self.populateTable(self.studentSortState)
   
   def jumpPage(self):
     if self.studentSortState == 6:
@@ -974,14 +982,19 @@ class programWindow(QMainWindow):
 
   def nextPage(self):
     if self.programSortState == 3:
-      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnsp(self.searchBar.text())/25):
-        self.pageNum.setText(str(math.ceil(retrieveData.rnsp(self.searchBar.text())/25)))
-    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfProgram()/25):
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
+        total_records = retrieveData.rnsp(self.searchBar.text())
     else:
-      page = int(self.pageNum.text()) + 1
-      self.pageNum.setText(str(page))
-      self.populateTable(self.programSortState)
+        total_records = retrieveData.retrieveNumberOfProgram()
+
+    max_page = math.ceil(total_records / 25)
+    current_page = int(self.pageNum.text())
+
+    if current_page < max_page:
+        current_page += 1
+        self.pageNum.setText(str(current_page))
+        self.populateTable(self.programSortState)
+    else:
+        self.pageNum.setText(str(max_page))
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
@@ -996,11 +1009,13 @@ class programWindow(QMainWindow):
 
   def lastPage(self):
     if self.programSortState == 3:
-      self.pageNum.setText(str(math.ceil(retrieveData.rnsp(self.searchBar.text())/25)))
-      self.populateTable(self.programSortState)
+        total_records = retrieveData.rnsp(self.searchBar.text())
     else:
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfProgram()/25)))
-      self.populateTable(self.programSortState)
+        total_records = retrieveData.retrieveNumberOfProgram()
+
+    max_page = max(1, math.ceil(total_records / 25))
+    self.pageNum.setText(str(max_page))
+    self.populateTable(self.programSortState)
   
   def jumpPage(self):
     if self.programSortState == 3:
@@ -1154,14 +1169,19 @@ class collegeWindow(QMainWindow):
 
   def nextPage(self):
     if self.collegeSortState == 2:
-      if int(self.pageNum.text()) >= math.ceil(retrieveData.rnsc(self.searchBar.text())/10):
-        self.pageNum.setText(str(math.ceil(retrieveData.rnsc(self.searchBar.text())/10)))
-    elif int(self.pageNum.text()) >= math.ceil(retrieveData.retrieveNumberOfCollege()/10):
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
+        total_records = retrieveData.rnsc(self.searchBar.text())
     else:
-      page = int(self.pageNum.text()) + 1
-      self.pageNum.setText(str(page))
-      self.populateTable(self.collegeSortState)
+        total_records = retrieveData.retrieveNumberOfCollege()
+
+    max_page = math.ceil(total_records / 10)
+    current_page = int(self.pageNum.text())
+
+    if current_page < max_page:
+        current_page += 1
+        self.pageNum.setText(str(current_page))
+        self.populateTable(self.collegeSortState)
+    else:
+        self.pageNum.setText(str(max_page))
   
   def prevPage(self):
     if int(self.pageNum.text()) > 1:
@@ -1176,11 +1196,13 @@ class collegeWindow(QMainWindow):
 
   def lastPage(self):
     if self.collegeSortState == 2:
-      self.pageNum.setText(str(math.ceil(retrieveData.rnsc(self.searchBar.text())/10)))
-      self.populateTable(self.collegeSortState)
+        total_records = retrieveData.rnsc(self.searchBar.text())
     else:
-      self.pageNum.setText(str(math.ceil(retrieveData.retrieveNumberOfCollege()/10)))
-      self.populateTable(self.collegeSortState)
+        total_records = retrieveData.retrieveNumberOfCollege()
+
+    max_page = max(1, math.ceil(total_records / 10))  
+    self.pageNum.setText(str(max_page))
+    self.populateTable(self.collegeSortState)
   
   def jumpPage(self):
     if self.collegeSortState == 2:
