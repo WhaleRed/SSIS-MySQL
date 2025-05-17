@@ -371,8 +371,12 @@ def rnss(searched):
     )
 
   mycursor = db.cursor()
-  query = "SELECT COUNT(program_code) FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR year_level LIKE %s OR gender LIKE %s OR program_code LIKE %s"
-  mycursor.execute(query, (f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%",))
+  if searched .isdigit() and len(searched) == 1:
+    query = "SELECT COUNT(program_code) FROM student WHERE year_level LIKE %s"
+    mycursor.execute(query, (f"%{searched}%",))
+  else:
+    query = "SELECT COUNT(program_code) FROM student WHERE student_id LIKE %s OR first_name LIKE %s OR last_name LIKE %s OR gender LIKE %s OR program_code LIKE %s"
+    mycursor.execute(query, (f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%", f"%{searched}%",))
   num = mycursor.fetchone()[0]
   return num
 
@@ -399,7 +403,7 @@ def rnsc(searched):
     )
 
   mycursor = db.cursor()
-  query = "SELECT COUNT(college_code) FROM program WHERE college_code LIKE %s OR college_name LIKE %s"
+  query = "SELECT COUNT(college_code) FROM college WHERE college_code LIKE %s OR college_name LIKE %s"
   mycursor.execute(query, (f"%{searched}%", f"%{searched}%",))
   num = mycursor.fetchone()[0]
   return num
