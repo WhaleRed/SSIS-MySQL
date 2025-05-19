@@ -181,25 +181,25 @@ class editStudentWindow2(QMainWindow):
     return bool(re.match(pattern, idnumber))
 
   def emptyField(self):
-    self.warning = emptyFieldWarning()
-    self.warning.show()
+    self.emptywarning = emptyFieldWarning()
+    self.emptywarning.show()
 
   def wrongFormat(self):
-    self.warning = wrongInputFormat()
-    self.warning.show()
+    self.formatwarning = wrongInputFormat()
+    self.formatwarning.show()
 
   def warning(self):
     self.warning = editWarning()
     self.warning.show()
 
   def alreadyExist(self):
-    self.warning = aeWarning()
-    self.warning.show()
+    self.aewarning = aeWarning()
+    self.aewarning.show()
 
   def doesNotExistWarning(self):
-    self.warning = dneWarning()
-    self.warning.label.setText("Data for the Program does not Exist.")
-    self.warning.show()
+    self.dnewarning = dneWarning()
+    self.dnewarning.label.setText("Data for the Program does not Exist.")
+    self.dnewarning.show()
 
 #Manage Windows for Program
 class addProgramWindow(QMainWindow):
@@ -629,8 +629,8 @@ class studentWindow(QMainWindow):
       self.editWindow2()
 
   def doesNotExistWarning(self):
-    self.warning = dneWarning()
-    self.warning.show()
+    self.dnewarning = dneWarning()
+    self.dnewarning.show()
 
   def editWindow2(self):
     self.window = editStudentWindow2()
@@ -898,8 +898,8 @@ class programWindow(QMainWindow):
       self.editWindow2()
 
   def doesNotExistWarning(self):
-    self.warning = dneWarning()
-    self.warning.show()
+    self.dnewarning = dneWarning()
+    self.dnewarning.show()
 
   def editWindow2(self):
     self.window = editProgramWindow2()
@@ -1102,8 +1102,8 @@ class collegeWindow(QMainWindow):
       self.editWindow2()
 
   def doesNotExistWarning(self):
-    self.warning = dneWarning()
-    self.warning.show()
+    self.dnewarning = dneWarning()
+    self.dnewarning.show()
 
   def editWindow2(self):
     self.window = editCollegeWindow2()
