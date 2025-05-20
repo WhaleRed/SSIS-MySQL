@@ -606,8 +606,8 @@ class studentWindow(QMainWindow):
       self.warning()
 
   def warning(self):
-    self.warning = deleteWarning()
-    self.warning.show()
+    self.delstudwarning = deleteWarning()
+    self.delstudwarning.show()
 
   def addWindow(self):
     self.window = addStudentWindow()
@@ -879,8 +879,8 @@ class programWindow(QMainWindow):
       self.warning()
 
   def warning(self):
-    self.warning = deleteWarning()
-    self.warning.show()
+    self.delprgwarning = deleteWarning()
+    self.delprgwarning.show()
 
   def deleteWindow(self):
     self.window = deleteProgramWindow()
@@ -1083,8 +1083,8 @@ class collegeWindow(QMainWindow):
       self.warning()
 
   def warning(self):
-    self.warning = deleteWarning()
-    self.warning.show()
+    self.delcolwarning = deleteWarning()
+    self.delcolwarning.show()
 
   def deleteWindow(self):
     self.window = deleteCollegeWindow()
